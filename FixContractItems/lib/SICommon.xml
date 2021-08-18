@@ -1,0 +1,313 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+SICommon
+</name>
+</assembly>
+<members>
+<member name="T:SICommon.My.MyWebExtension">
+ <summary>
+ Module used to define the properties that are available in the My Namespace for Web projects.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:SICommon.My.MyWebExtension.Computer">
+ <summary>
+ Returns information about the host computer.
+ </summary>
+</member>
+<member name="P:SICommon.My.MyWebExtension.User">
+ <summary>
+ Returns information for the current Web user.
+ </summary>
+</member>
+<member name="P:SICommon.My.MyWebExtension.Request">
+ <summary>
+ Returns Request object.
+ </summary>
+</member>
+<member name="P:SICommon.My.MyWebExtension.Response">
+ <summary>
+ Returns Response object.
+ </summary>
+</member>
+<member name="P:SICommon.My.MyWebExtension.Log">
+ <summary>
+ Returns the Asp log object.
+ </summary>
+</member>
+<member name="T:SICommon.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:SICommon.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:SICommon.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="M:SICommon.CodeXRef.dbCodeXRef.ValidateDealerNumber(System.String)">
+ <summary>
+ Check to see if dealer number is in the table
+ </summary>
+ <param name="vSubKey"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:SICommon.FutureDatedContractsClosePeriod.CreateSQL2">
+ <summary>
+ CreateSql2 Returns a DataTable of batchContracts.
+ Sql Statement is corrected to remove sql injection. The include/exclude lists for the "In" statements must break out each value into individual parameters/values for the Command.
+ A Dictionary is used to create the parameters and values . The parameters are added to the sql statement and in the Sql Command parameters mapped to their values.
+ </summary>
+ <returns></returns>
+</member>
+<member name="F:SICommon._Default._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:SICommon._Default._lblElapsedTime">
+<summary>
+lblElapsedTime control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:SICommon._Default._btnStart">
+<summary>
+btnStart control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="T:SICommon.rptEmail">
+ <summary>
+ Summary description for rptEmail
+ </summary>
+</member>
+<member name="T:SICommon.rptEmailConf">
+ <summary>
+ Summary description for rptEmailConf
+ This is the configuration code for setting up emails in the web.config file
+ for various reports
+ </summary>
+ 
+</member>
+<member name="T:SICommon.rptEmails">
+ <summary>
+ Summary description for rptMails
+ This handles getting the email collection from the web.config file
+ </summary>
+</member>
+<member name="T:SICommon.dbCodeTable">
+ <summary>
+ Class for database calls for the CodeXRef.
+ </summary>
+</member>
+<member name="F:SICommon.SITestEmail._Head1">
+<summary>
+Head1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:SICommon.SITestEmail._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:SICommon.SITestEmail._Label1">
+<summary>
+Label1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:SICommon.SITestEmail._txtFromEmail">
+<summary>
+txtFromEmail control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:SICommon.SITestEmail._Label2">
+<summary>
+Label2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:SICommon.SITestEmail._txtSMTP">
+<summary>
+txtSMTP control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:SICommon.SITestEmail._Label3">
+<summary>
+Label3 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:SICommon.SITestEmail._txtPort">
+<summary>
+txtPort control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:SICommon.SITestEmail._Label4">
+<summary>
+Label4 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:SICommon.SITestEmail._txtFromEmail2">
+<summary>
+txtFromEmail2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:SICommon.SITestEmail._txtError">
+<summary>
+txtError control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:SICommon.SITestEmail._btnGetDefaults">
+<summary>
+btnGetDefaults control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:SICommon.SITestEmail._btnSISendMail">
+<summary>
+btnSISendMail control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:SICommon.SITestEmail._btnSMTP">
+<summary>
+btnSMTP control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:SICommon.SITestEmail._chkEnableSSL">
+<summary>
+chkEnableSSL control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:SICommon.SITestEmail._chkUseFromEmail">
+<summary>
+chkUseFromEmail control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:SICommon.SITestEmail._Label5">
+<summary>
+Label5 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:SICommon.SITestEmail._txtToEmail">
+<summary>
+txtToEmail control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:SICommon.SITestEmail._chkValidateSSL">
+<summary>
+chkValidateSSL control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:SICommon.SIViewSettings._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:SICommon.SIViewSettings._dgvInfo">
+<summary>
+dgvInfo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+</members>
+</doc>
