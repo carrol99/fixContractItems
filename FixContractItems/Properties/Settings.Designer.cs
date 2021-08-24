@@ -82,5 +82,17 @@ namespace FixContractItems.Properties {
                 this["txtMissingSheetName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string txtMissingOutputFile {
+            get {
+                return ((string)(this["txtMissingOutputFile"]));
+            }
+            set {
+                this["txtMissingOutputFile"] = value;
+            }
+        }
     }
 }
