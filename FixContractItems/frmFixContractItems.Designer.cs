@@ -75,6 +75,7 @@
             this.txtExportWriteOutput = new System.Windows.Forms.TextBox();
             this.tabMismatched = new System.Windows.Forms.TabPage();
             this.splitMismatchedMain = new System.Windows.Forms.SplitContainer();
+            this.btnUnmatchedDelete = new System.Windows.Forms.Button();
             this.btnWriteMoveSQL = new System.Windows.Forms.Button();
             this.txtOutputFileName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -95,7 +96,7 @@
             this.lblMismatchedOutputFileDesc = new System.Windows.Forms.Label();
             this.btnMismatchedExpand = new System.Windows.Forms.Button();
             this.dgvMismatched = new System.Windows.Forms.DataGridView();
-            this.btnUnmatchedDelete = new System.Windows.Forms.Button();
+            this.btnRetrieveMissingItems = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tabMissingItems.SuspendLayout();
@@ -177,6 +178,7 @@
             // 
             // splitMissingMain.Panel1
             // 
+            this.splitMissingMain.Panel1.Controls.Add(this.btnRetrieveMissingItems);
             this.splitMissingMain.Panel1.Controls.Add(this.label9);
             this.splitMissingMain.Panel1.Controls.Add(this.txtMissingOutputFile);
             this.splitMissingMain.Panel1.Controls.Add(this.btnMissingWriteContractItems);
@@ -667,6 +669,16 @@
             this.splitMismatchedMain.SplitterDistance = 143;
             this.splitMismatchedMain.TabIndex = 0;
             // 
+            // btnUnmatchedDelete
+            // 
+            this.btnUnmatchedDelete.Location = new System.Drawing.Point(810, 18);
+            this.btnUnmatchedDelete.Name = "btnUnmatchedDelete";
+            this.btnUnmatchedDelete.Size = new System.Drawing.Size(174, 23);
+            this.btnUnmatchedDelete.TabIndex = 12;
+            this.btnUnmatchedDelete.Text = "Write Delete UnMatched SQL";
+            this.btnUnmatchedDelete.UseVisualStyleBackColor = true;
+            this.btnUnmatchedDelete.Click += new System.EventHandler(this.btnUnmatchedDelete_Click);
+            // 
             // btnWriteMoveSQL
             // 
             this.btnWriteMoveSQL.Location = new System.Drawing.Point(384, 18);
@@ -857,15 +869,15 @@
             this.dgvMismatched.Size = new System.Drawing.Size(1220, 317);
             this.dgvMismatched.TabIndex = 0;
             // 
-            // btnUnmatchedDelete
+            // btnRetrieveMissingItems
             // 
-            this.btnUnmatchedDelete.Location = new System.Drawing.Point(810, 18);
-            this.btnUnmatchedDelete.Name = "btnUnmatchedDelete";
-            this.btnUnmatchedDelete.Size = new System.Drawing.Size(174, 23);
-            this.btnUnmatchedDelete.TabIndex = 12;
-            this.btnUnmatchedDelete.Text = "Write Delete UnMatched SQL";
-            this.btnUnmatchedDelete.UseVisualStyleBackColor = true;
-            this.btnUnmatchedDelete.Click += new System.EventHandler(this.btnUnmatchedDelete_Click);
+            this.btnRetrieveMissingItems.Location = new System.Drawing.Point(494, 95);
+            this.btnRetrieveMissingItems.Name = "btnRetrieveMissingItems";
+            this.btnRetrieveMissingItems.Size = new System.Drawing.Size(126, 23);
+            this.btnRetrieveMissingItems.TabIndex = 76;
+            this.btnRetrieveMissingItems.Text = "Find Missing Items ";
+            this.btnRetrieveMissingItems.UseVisualStyleBackColor = true;
+            this.btnRetrieveMissingItems.Click += new System.EventHandler(this.btnRetrieveMissingItems_Click);
             // 
             // frmFixContractItems
             // 
@@ -985,6 +997,7 @@
         private System.Windows.Forms.TextBox txtMissingOutputFile;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnUnmatchedDelete;
+        private System.Windows.Forms.Button btnRetrieveMissingItems;
     }
 }
 

@@ -68,6 +68,8 @@ namespace FixContractItems
             _lineItem.ConnectionStringSQL = sConnectionString;
 
             _SqlDataRoutines = new DbDataRoutines(sConnectionString);
+            _SqlDataRoutines.DefaultCommandTimeout = 600;
+    
 
         }
 
@@ -187,6 +189,7 @@ namespace FixContractItems
                         try
                         {
                             oAdapter.SelectCommand = new SqlCommand(vSQL, oConn);
+                            oAdapter.SelectCommand.CommandTimeout = 600;
                             oAdapter.Fill(dt);
                         }
                         catch (Exception ex)
@@ -593,7 +596,7 @@ namespace FixContractItems
 
             foreach (DataRow myRow in dtMismatches.Rows)
             {
-                string tf = myRow["isDeFstinationFound"].ToString();
+                string tf = myRow["isDestinationFound"].ToString();
                 string uk = myRow["contractitemsUK"].ToString();
                 string badBatchNum = myRow["cibatchnum"].ToString();
                 if (tf.ToLower() != "true")
@@ -836,7 +839,7 @@ namespace FixContractItems
             string sql = string.Format(sqlFMT, vInvoiceNo);
 
             _SqlDataRoutines.SQLString = sql;
-
+           
             DataTable dt = _SqlDataRoutines.getTableFromDB();
 
             DataRow newRow = vdt.NewRow();
@@ -1160,6 +1163,64 @@ namespace FixContractItems
 
             MessageBox.Show("Output file written");
 
+        }
+
+        private void btnRetrieveMissingItems_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            btn.Enabled = false;
+            Cursor = Cursors.WaitCursor;
+
+            dtMismatches = RetrieveMissingContractItems();
+
+            lblMismatchedRecordCount.Text = dtMismatches.Rows.Count.ToString();
+
+            dgvProcessOutput.DataSource = dtMismatches;
+            dgvProcessOutput.Refresh();
+
+            btn.Enabled = true;
+            Cursor = Cursors.Default;
+        }
+
+        private DataTable RetrieveMissingContractItems()
+        {
+            StringBuilder sbSQL = new StringBuilder();
+            sbSQL.Append("SELECT ");
+            sbSQL.Append("count(*) as count, ");
+            sbSQL.Append("convert(date,batchcontract.EntryDate) as Entrydate, ");
+            sbSQL.Append("dealergroup.sGroupNumber, ");
+            sbSQL.Append("min(batchcontract.BatchNum) as minBatchNum, ");
+            sbSQL.Append("max(batchcontract.BatchNum) as maxBatchNum, ");
+            sbSQL.Append("min(batchcontract.uniquekey) as minBCUK, ");
+            sbSQL.Append("max(batchcontract.uniquekey) as maxBCUK, ");
+            sbSQL.Append("min(batchcontract.Certificate) as minCertNo, ");
+            sbSQL.Append("max(batchcontract.Certificate) as maxCertNo, ");
+            sbSQL.Append("min(batchcontract.ExpirationDate) as minExpiration, ");
+            sbSQL.Append("max(batchcontract.ExpirationDate) AS maxExpiration, ");
+            sbSQL.Append("min(dealer.dealernumber) as minDealerNumber, ");
+            sbSQL.Append("max(dealer.DealerNumber) as maxDealerNumber, ");
+            sbSQL.Append("min(batchcontract.entrydate) as minEntrydate, ");
+            sbSQL.Append("max(batchcontract.entrydate) as maxEntrydate ");
+            sbSQL.Append("FROM batchcontract ");
+            sbSQL.Append("left JOIN contractitems ON batchcontract.uniquekey=contractitems.BatchConNum ");
+            sbSQL.Append("INNER JOIN batchheader bh ON bh.uniquekey=batchcontract.BatchNum ");
+            sbSQL.Append("INNER JOIN dealer ON dealer.uniquekey=bh.Dealer ");
+            sbSQL.Append("INNER JOIN dealergroupSELECT ON dealergroupselect.iDealer = dealer.uniquekey ");
+            sbSQL.Append("INNER JOIN dealergroup ON dealergroup.uniquekey = dealergroupselect.iDealerGroup ");
+            sbSQL.Append("WHERE  contractitems.uniquekey is null ");
+            sbSQL.Append("and convert(date,entrydate) >= '2017-01-01' ");
+            sbSQL.Append("and convert(date,expirationdate) >= '2021-01-01' ");
+            sbSQL.Append("and cancelentrydate is null ");
+            sbSQL.Append("and sgroupnumber <> 'z4wcportal' ");
+            sbSQL.Append("GROUP BY convert(date,batchcontract.EntryDate), dealergroup.sGroupNumber ");
+            sbSQL.Append("ORDER BY convert(date,batchcontract.EntryDate) desc ");
+            sbSQL.Append(" ");
+            sbSQL.Append(" ");
+
+            DataTable dt;
+            _SqlDataRoutines.SQLString = sbSQL.ToString();
+            dt = _SqlDataRoutines.getTableFromDB();
+            return dt;
         }
     }
 }
