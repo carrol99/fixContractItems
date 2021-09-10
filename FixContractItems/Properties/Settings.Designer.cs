@@ -94,5 +94,29 @@ namespace FixContractItems.Properties {
                 this["txtMissingOutputFile"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string txtClaimCarrierMismatchOutputFile {
+            get {
+                return ((string)(this["txtClaimCarrierMismatchOutputFile"]));
+            }
+            set {
+                this["txtClaimCarrierMismatchOutputFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string txtClaimCarrierMismatchSheetName {
+            get {
+                return ((string)(this["txtClaimCarrierMismatchSheetName"]));
+            }
+            set {
+                this["txtClaimCarrierMismatchSheetName"] = value;
+            }
+        }
     }
 }

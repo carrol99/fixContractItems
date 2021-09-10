@@ -23,6 +23,7 @@ namespace FixContractItems
         string tempDir;
         string Version = ".9";
         DataTable dtMismatches;
+        DataTable dtClaimCarrierMismatches;
         LineItems _lineItem;
         private string FatalErrorMessage;
         private bool isFatalError;
@@ -1221,6 +1222,86 @@ namespace FixContractItems
             _SqlDataRoutines.SQLString = sbSQL.ToString();
             dt = _SqlDataRoutines.getTableFromDB();
             return dt;
+        }
+
+        private DataTable RetrieveClaimCarrierMismatches()
+        {
+            StringBuilder sbSQL = new StringBuilder();
+
+            sbSQL = new StringBuilder();
+            sbSQL.Append("SELECT ");
+            sbSQL.Append("claimmaster.iWarranty, ");
+            sbSQL.Append("claimmaster.Certificate as ClaimCertificate, ");
+            sbSQL.Append("claimmaster.uniquekey as claimnumber, ");
+            sbSQL.Append("claimmaster.createdate as claimCreateDate, ");
+            sbSQL.Append("batchcontract.icarrier as bccarrier, ");
+            sbSQL.Append("InsuranceKey as claimcarrier, ");
+            sbSQL.Append("claimstatus, ");
+            sbSQL.Append("closedate, ");
+            sbSQL.Append("batchcontract.entrydate as bcEntryDate, ");
+            sbSQL.Append("(SELECT count(*) FROM payments WHERE payments.iClaim = claimmaster.uniquekey) as payments, ");
+            sbSQL.Append("(SELECT sum(payments.checkamount) FROM payments WHERE payments.iClaim = claimmaster.uniquekey) as paymentAmt, ");
+            sbSQL.Append("batchcontract.LastName as bcLast, ");
+            sbSQL.Append("claimmaster.LName as claimLast, ");
+            sbSQL.Append("claimmaster.lastuser as claimLastUer, ");
+            sbSQL.Append("claimmaster.LossDate, ");
+            sbSQL.Append("claimmaster.InvoiceNum as claimInvoicenumber, ");
+            sbSQL.Append("batchcontract.InvoiceNo as bcInvoiceNo, ");
+            sbSQL.Append("batchcontract.Certificate, ");
+            sbSQL.Append("carrier.carriername as bccarrierName, ");
+            sbSQL.Append("carrier2.CarrierName as claimCarrierName ");
+            sbSQL.Append("FROM ");
+            sbSQL.Append("claimmaster ");
+            sbSQL.Append("INNER JOIN batchcontract ON batchcontract.uniquekey = claimmaster.iWarranty ");
+            sbSQL.Append("left JOIN carrier ON carrier.uniquekey = batchcontract.icarrier ");
+            sbSQL.Append("left JOIN carrier carrier2 ON carrier2.uniquekey = claimmaster.InsuranceKey ");
+            sbSQL.Append("WHERE ");
+            sbSQL.Append("insurancekey <> icarrier ");
+            sbSQL.Append("and convert(date,createdate) > '2020-01-01' ");
+            sbSQL.Append("ORDER BY claimmaster.createdate desc ");
+            sbSQL.Append(" ");
+
+            DataTable dt;
+            _SqlDataRoutines.SQLString = sbSQL.ToString();
+            dt = _SqlDataRoutines.getTableFromDB();
+            return dt;
+
+        }
+        private void btnClaimCarrierFixRetrieve_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            btn.Enabled = false;
+            Cursor = Cursors.WaitCursor;
+
+            dtClaimCarrierMismatches = RetrieveClaimCarrierMismatches();
+
+            lblClaimCarrierMismatchOutputCount.Text = dtClaimCarrierMismatches.Rows.Count.ToString();
+
+            dgvClaimCarrierMismatch.DataSource = dtClaimCarrierMismatches;
+            dgvClaimCarrierMismatch.Refresh();
+
+            btn.Enabled = true;
+            Cursor = Cursors.Default;
+        }
+
+        private void btnWriteClaimCarrierMismatchOutput_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            Button btn = (Button)sender;
+            btn.Enabled = false;
+
+            bool isWriteHeaders = true;
+
+            WriteExcelFile(txtClaimCarrierFixOutputName, txtClaimCarrierMismatchSheetName, dtClaimCarrierMismatches, isWriteHeaders);
+
+            Cursor = Cursors.Default;
+            btn.Enabled = true;
+        }
+
+        private void btnClaimCarrierMismatchExpand_Click(object sender, EventArgs e)
+        {
+            ExpandDataGridView((Button)sender, dgvClaimCarrierMismatch);
+
         }
     }
 }
