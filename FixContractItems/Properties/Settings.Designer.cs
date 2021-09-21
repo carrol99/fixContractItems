@@ -118,5 +118,17 @@ namespace FixContractItems.Properties {
                 this["txtClaimCarrierMismatchSheetName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string txtClaimCarrierFixOutputFileName {
+            get {
+                return ((string)(this["txtClaimCarrierFixOutputFileName"]));
+            }
+            set {
+                this["txtClaimCarrierFixOutputFileName"] = value;
+            }
+        }
     }
 }

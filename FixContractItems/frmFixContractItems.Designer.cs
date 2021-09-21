@@ -100,12 +100,15 @@
             this.label14 = new System.Windows.Forms.Label();
             this.btnClaimCarrierMismatchExpand = new System.Windows.Forms.Button();
             this.dgvClaimCarrierMismatch = new System.Windows.Forms.DataGridView();
+            this.label11 = new System.Windows.Forms.Label();
+            this.btnClaimCarrierFixWriteSQL = new System.Windows.Forms.Button();
             this.txtMissingOutputFile = new System.Windows.Forms.TextBox();
             this.txtMissingSheetName = new System.Windows.Forms.TextBox();
             this.txtMissingFileName = new System.Windows.Forms.TextBox();
             this.txtOutputFileName = new System.Windows.Forms.TextBox();
             this.txtMismatchedSheetName = new System.Windows.Forms.TextBox();
             this.txtMismatchedOutputFileName = new System.Windows.Forms.TextBox();
+            this.txtClaimCarrierFixOutputFileName = new System.Windows.Forms.TextBox();
             this.txtClaimCarrierMismatchSheetName = new System.Windows.Forms.TextBox();
             this.txtClaimCarrierFixOutputName = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
@@ -863,6 +866,9 @@
             // 
             // splitClaimCarrierFix.Panel1
             // 
+            this.splitClaimCarrierFix.Panel1.Controls.Add(this.label11);
+            this.splitClaimCarrierFix.Panel1.Controls.Add(this.txtClaimCarrierFixOutputFileName);
+            this.splitClaimCarrierFix.Panel1.Controls.Add(this.btnClaimCarrierFixWriteSQL);
             this.splitClaimCarrierFix.Panel1.Controls.Add(this.btnClaimCarrierFixRetrieve);
             // 
             // splitClaimCarrierFix.Panel2
@@ -883,7 +889,7 @@
             // 
             this.btnClaimCarrierFixRetrieve.Location = new System.Drawing.Point(38, 28);
             this.btnClaimCarrierFixRetrieve.Name = "btnClaimCarrierFixRetrieve";
-            this.btnClaimCarrierFixRetrieve.Size = new System.Drawing.Size(164, 34);
+            this.btnClaimCarrierFixRetrieve.Size = new System.Drawing.Size(147, 38);
             this.btnClaimCarrierFixRetrieve.TabIndex = 0;
             this.btnClaimCarrierFixRetrieve.Text = "Retrieve Carrier Mismatch";
             this.btnClaimCarrierFixRetrieve.UseVisualStyleBackColor = true;
@@ -947,6 +953,25 @@
             this.dgvClaimCarrierMismatch.Size = new System.Drawing.Size(1253, 413);
             this.dgvClaimCarrierMismatch.TabIndex = 8;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(42, 91);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(58, 13);
+            this.label11.TabIndex = 78;
+            this.label11.Text = "Output File";
+            // 
+            // btnClaimCarrierFixWriteSQL
+            // 
+            this.btnClaimCarrierFixWriteSQL.Location = new System.Drawing.Point(297, 28);
+            this.btnClaimCarrierFixWriteSQL.Name = "btnClaimCarrierFixWriteSQL";
+            this.btnClaimCarrierFixWriteSQL.Size = new System.Drawing.Size(147, 38);
+            this.btnClaimCarrierFixWriteSQL.TabIndex = 76;
+            this.btnClaimCarrierFixWriteSQL.Text = "Write Update SQL";
+            this.btnClaimCarrierFixWriteSQL.UseVisualStyleBackColor = true;
+            this.btnClaimCarrierFixWriteSQL.Click += new System.EventHandler(this.btnClaimCarrierFixWriteSQL_Click);
+            // 
             // txtMissingOutputFile
             // 
             this.txtMissingOutputFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -1004,6 +1029,17 @@
             this.txtMismatchedOutputFileName.Size = new System.Drawing.Size(1091, 20);
             this.txtMismatchedOutputFileName.TabIndex = 4;
             this.txtMismatchedOutputFileName.Text = global::FixContractItems.Properties.Settings.Default.txtMismatchedOutputFileName;
+            // 
+            // txtClaimCarrierFixOutputFileName
+            // 
+            this.txtClaimCarrierFixOutputFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtClaimCarrierFixOutputFileName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::FixContractItems.Properties.Settings.Default, "txtClaimCarrierFixOutputFileName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtClaimCarrierFixOutputFileName.Location = new System.Drawing.Point(137, 88);
+            this.txtClaimCarrierFixOutputFileName.Name = "txtClaimCarrierFixOutputFileName";
+            this.txtClaimCarrierFixOutputFileName.Size = new System.Drawing.Size(1130, 20);
+            this.txtClaimCarrierFixOutputFileName.TabIndex = 77;
+            this.txtClaimCarrierFixOutputFileName.Text = global::FixContractItems.Properties.Settings.Default.txtClaimCarrierFixOutputFileName;
             // 
             // txtClaimCarrierMismatchSheetName
             // 
@@ -1070,6 +1106,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvMismatched)).EndInit();
             this.tabClaimCarrierFix.ResumeLayout(false);
             this.splitClaimCarrierFix.Panel1.ResumeLayout(false);
+            this.splitClaimCarrierFix.Panel1.PerformLayout();
             this.splitClaimCarrierFix.Panel2.ResumeLayout(false);
             this.splitClaimCarrierFix.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitClaimCarrierFix)).EndInit();
@@ -1162,6 +1199,9 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button btnClaimCarrierMismatchExpand;
         private System.Windows.Forms.DataGridView dgvClaimCarrierMismatch;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtClaimCarrierFixOutputFileName;
+        private System.Windows.Forms.Button btnClaimCarrierFixWriteSQL;
     }
 }
 

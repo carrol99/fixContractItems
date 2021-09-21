@@ -1303,5 +1303,48 @@ namespace FixContractItems
             ExpandDataGridView((Button)sender, dgvClaimCarrierMismatch);
 
         }
+
+        private void btnClaimCarrierFixWriteSQL_Click(object sender, EventArgs e)
+        {
+            string fileName = txtClaimCarrierFixOutputFileName.Text.Trim();
+
+            if (fileName.Length == 0)
+            {
+                MessageBox.Show("You must enter an output file name - Retry");
+                return;
+            }
+
+            Properties.Settings.Default.Save();
+
+            CreateSQLForClaimCarrierFix(fileName);
+
+            MessageBox.Show("Output file written");
+        }
+
+        private void CreateSQLForClaimCarrierFix(string vFileName)
+        {
+            StreamWriter outputFile = new StreamWriter(vFileName);
+
+            Int32 numFound = 0;
+            Int32 numNotFound = 0;
+
+            foreach (DataRow myRow in dtClaimCarrierMismatches.Rows)
+            {
+                string uk = myRow["iWarranty"].ToString();
+                string bcCarrier = myRow["bccarrier"].ToString();
+                string claimcarrier = myRow["claimcarrier"].ToString();
+                string claimNumber = myRow["claimnumber"].ToString();
+
+                numFound += 1;
+
+                string sSQLFmt = $"update claimmaster set insurancekey = '{bcCarrier}' where uniquekey = {claimNumber} and insurancekey='{claimcarrier}';";
+                outputFile.WriteLine(sSQLFmt);
+
+            }
+
+            outputFile.WriteLine("--Num Found:" + numFound.ToString() + " not found:" + numNotFound.ToString());
+            outputFile.Close();
+
+        }
     }
 }
