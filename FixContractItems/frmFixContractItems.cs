@@ -1209,7 +1209,7 @@ namespace FixContractItems
             sbSQL.Append("INNER JOIN dealergroupSELECT ON dealergroupselect.iDealer = dealer.uniquekey ");
             sbSQL.Append("INNER JOIN dealergroup ON dealergroup.uniquekey = dealergroupselect.iDealerGroup ");
             sbSQL.Append("WHERE  contractitems.uniquekey is null ");
-            sbSQL.Append("and convert(date,entrydate) >= '2017-01-01' ");
+            sbSQL.Append("and convert(date,entrydate) >= '2021-01-01' ");
             sbSQL.Append("and convert(date,expirationdate) >= '2021-01-01' ");
             sbSQL.Append("and cancelentrydate is null ");
             sbSQL.Append("and sgroupnumber <> 'z4wcportal' ");
