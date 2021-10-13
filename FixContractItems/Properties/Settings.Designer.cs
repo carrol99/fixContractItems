@@ -130,5 +130,53 @@ namespace FixContractItems.Properties {
                 this["txtClaimCarrierFixOutputFileName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string txtContractItemsUpdateFileName {
+            get {
+                return ((string)(this["txtContractItemsUpdateFileName"]));
+            }
+            set {
+                this["txtContractItemsUpdateFileName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string txtContractItemsUpdateSheetName {
+            get {
+                return ((string)(this["txtContractItemsUpdateSheetName"]));
+            }
+            set {
+                this["txtContractItemsUpdateSheetName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string txtContractItemsUpdateOutputFileName {
+            get {
+                return ((string)(this["txtContractItemsUpdateOutputFileName"]));
+            }
+            set {
+                this["txtContractItemsUpdateOutputFileName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string txtContractItemsUpdateInputFileName {
+            get {
+                return ((string)(this["txtContractItemsUpdateInputFileName"]));
+            }
+            set {
+                this["txtContractItemsUpdateInputFileName"] = value;
+            }
+        }
     }
 }

@@ -35,13 +35,16 @@
             this.splitMissingMain = new System.Windows.Forms.SplitContainer();
             this.btnRetrieveMissingItems = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
+            this.txtMissingOutputFile = new System.Windows.Forms.TextBox();
             this.btnMissingWriteContractItems = new System.Windows.Forms.Button();
             this.lblMissingStatus2 = new System.Windows.Forms.Label();
             this.btnMissingRetrieveInfo = new System.Windows.Forms.Button();
             this.lblMissingStatus = new System.Windows.Forms.Label();
             this.btnAddItemFindFile = new System.Windows.Forms.Button();
             this.btnLoadMissing = new System.Windows.Forms.Button();
+            this.txtMissingSheetName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.txtMissingFileName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tabProcessData = new System.Windows.Forms.TabControl();
             this.tabProcessOutput = new System.Windows.Forms.TabPage();
@@ -75,6 +78,7 @@
             this.splitMismatchedMain = new System.Windows.Forms.SplitContainer();
             this.btnUnmatchedDelete = new System.Windows.Forms.Button();
             this.btnWriteMoveSQL = new System.Windows.Forms.Button();
+            this.txtOutputFileName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnWriteDeleteSQL = new System.Windows.Forms.Button();
             this.lblFoundCount = new System.Windows.Forms.Label();
@@ -87,30 +91,69 @@
             this.btnRetrieveMismatched = new System.Windows.Forms.Button();
             this.lblMismatchedRecordCount = new System.Windows.Forms.Label();
             this.btnWriteMismatched = new System.Windows.Forms.Button();
+            this.txtMismatchedSheetName = new System.Windows.Forms.TextBox();
+            this.txtMismatchedOutputFileName = new System.Windows.Forms.TextBox();
             this.lblMismatchSheetNameDesc = new System.Windows.Forms.Label();
             this.lblMismatchedOutputFileDesc = new System.Windows.Forms.Label();
             this.btnMismatchedExpand = new System.Windows.Forms.Button();
             this.dgvMismatched = new System.Windows.Forms.DataGridView();
             this.tabClaimCarrierFix = new System.Windows.Forms.TabPage();
             this.splitClaimCarrierFix = new System.Windows.Forms.SplitContainer();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtClaimCarrierFixOutputFileName = new System.Windows.Forms.TextBox();
+            this.btnClaimCarrierFixWriteSQL = new System.Windows.Forms.Button();
             this.btnClaimCarrierFixRetrieve = new System.Windows.Forms.Button();
             this.lblClaimCarrierMismatchOutputCount = new System.Windows.Forms.Label();
             this.btnWriteClaimCarrierMismatchOutput = new System.Windows.Forms.Button();
+            this.txtClaimCarrierMismatchSheetName = new System.Windows.Forms.TextBox();
+            this.txtClaimCarrierFixOutputName = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.btnClaimCarrierMismatchExpand = new System.Windows.Forms.Button();
             this.dgvClaimCarrierMismatch = new System.Windows.Forms.DataGridView();
-            this.label11 = new System.Windows.Forms.Label();
-            this.btnClaimCarrierFixWriteSQL = new System.Windows.Forms.Button();
-            this.txtMissingOutputFile = new System.Windows.Forms.TextBox();
-            this.txtMissingSheetName = new System.Windows.Forms.TextBox();
-            this.txtMissingFileName = new System.Windows.Forms.TextBox();
-            this.txtOutputFileName = new System.Windows.Forms.TextBox();
-            this.txtMismatchedSheetName = new System.Windows.Forms.TextBox();
-            this.txtMismatchedOutputFileName = new System.Windows.Forms.TextBox();
-            this.txtClaimCarrierFixOutputFileName = new System.Windows.Forms.TextBox();
-            this.txtClaimCarrierMismatchSheetName = new System.Windows.Forms.TextBox();
-            this.txtClaimCarrierFixOutputName = new System.Windows.Forms.TextBox();
+            this.tabContractItemsUpdate = new System.Windows.Forms.TabPage();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnContractItemsUpdateFindFile2 = new System.Windows.Forms.Button();
+            this.lblContractItemsUpdateOutputFileDesc = new System.Windows.Forms.Label();
+            this.txtContractItemsUpdateWriteSQL = new System.Windows.Forms.TextBox();
+            this.btnContractItemsUpdateWrite = new System.Windows.Forms.Button();
+            this.lblContractItemsUpdateStatus2 = new System.Windows.Forms.Label();
+            this.btnContractItemsUpdateRetrieve = new System.Windows.Forms.Button();
+            this.lblContractItemsUpdateStatus = new System.Windows.Forms.Label();
+            this.btnContractItemsUpdateLoad = new System.Windows.Forms.Button();
+            this.txtContractItemsUpdateSheetName = new System.Windows.Forms.TextBox();
+            this.lblContractItemsUpdateSheetNameDesc = new System.Windows.Forms.Label();
+            this.txtContractItemsUpdateFileName = new System.Windows.Forms.TextBox();
+            this.lblContractItemsUpdateFileNameDesc = new System.Windows.Forms.Label();
+            this.tabContractItemsUpdateData = new System.Windows.Forms.TabControl();
+            this.tabContractItemsUpdateOutput = new System.Windows.Forms.TabPage();
+            this.dgvContractItemsUpdateOutput = new System.Windows.Forms.DataGridView();
+            this.lblContractItemsUpdateOutputRecordCount = new System.Windows.Forms.Label();
+            this.btnContractItemsUpdateOutputWrite = new System.Windows.Forms.Button();
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtContractItemsUpdateOutputFileName = new System.Windows.Forms.TextBox();
+            this.btnContractItemsUpdateOutputExpand = new System.Windows.Forms.Button();
+            this.tabContractItemsUpdateInput = new System.Windows.Forms.TabPage();
+            this.txtContractItemsUpdateInputFileName = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.btnContractItemsUpdateInputWrite = new System.Windows.Forms.Button();
+            this.btnContractItemsUpdateInputExpand = new System.Windows.Forms.Button();
+            this.dgvContractItemsUpdateInput = new System.Windows.Forms.DataGridView();
+            this.tabContractItemsUpdateExport = new System.Windows.Forms.TabPage();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.dataGridView5 = new System.Windows.Forms.DataGridView();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.btnContractItemsUpdateErrorWrite = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tabMissingItems.SuspendLayout();
@@ -143,6 +186,24 @@
             this.splitClaimCarrierFix.Panel2.SuspendLayout();
             this.splitClaimCarrierFix.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClaimCarrierMismatch)).BeginInit();
+            this.tabContractItemsUpdate.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            this.tabContractItemsUpdateData.SuspendLayout();
+            this.tabContractItemsUpdateOutput.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvContractItemsUpdateOutput)).BeginInit();
+            this.tabContractItemsUpdateInput.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvContractItemsUpdateInput)).BeginInit();
+            this.tabContractItemsUpdateExport.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -167,6 +228,7 @@
             this.tabMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabMain.Controls.Add(this.tabContractItemsUpdate);
             this.tabMain.Controls.Add(this.tabMissingItems);
             this.tabMain.Controls.Add(this.tabMismatched);
             this.tabMain.Controls.Add(this.tabClaimCarrierFix);
@@ -239,6 +301,17 @@
             this.label9.TabIndex = 75;
             this.label9.Text = "Output File";
             // 
+            // txtMissingOutputFile
+            // 
+            this.txtMissingOutputFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMissingOutputFile.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::FixContractItems.Properties.Settings.Default, "txtMissingOutputFile", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtMissingOutputFile.Location = new System.Drawing.Point(113, 128);
+            this.txtMissingOutputFile.Name = "txtMissingOutputFile";
+            this.txtMissingOutputFile.Size = new System.Drawing.Size(1130, 20);
+            this.txtMissingOutputFile.TabIndex = 74;
+            this.txtMissingOutputFile.Text = global::FixContractItems.Properties.Settings.Default.txtMissingOutputFile;
+            // 
             // btnMissingWriteContractItems
             // 
             this.btnMissingWriteContractItems.Location = new System.Drawing.Point(277, 95);
@@ -297,6 +370,15 @@
             this.btnLoadMissing.UseVisualStyleBackColor = true;
             this.btnLoadMissing.Click += new System.EventHandler(this.btnLoadMissing_Click);
             // 
+            // txtMissingSheetName
+            // 
+            this.txtMissingSheetName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::FixContractItems.Properties.Settings.Default, "txtMissingSheetName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtMissingSheetName.Location = new System.Drawing.Point(91, 69);
+            this.txtMissingSheetName.Name = "txtMissingSheetName";
+            this.txtMissingSheetName.Size = new System.Drawing.Size(212, 20);
+            this.txtMissingSheetName.TabIndex = 3;
+            this.txtMissingSheetName.Text = global::FixContractItems.Properties.Settings.Default.txtMissingSheetName;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -305,6 +387,15 @@
             this.label6.Size = new System.Drawing.Size(66, 13);
             this.label6.TabIndex = 2;
             this.label6.Text = "Sheet Name";
+            // 
+            // txtMissingFileName
+            // 
+            this.txtMissingFileName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::FixContractItems.Properties.Settings.Default, "txtMissingFileName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtMissingFileName.Location = new System.Drawing.Point(18, 42);
+            this.txtMissingFileName.Name = "txtMissingFileName";
+            this.txtMissingFileName.Size = new System.Drawing.Size(1192, 20);
+            this.txtMissingFileName.TabIndex = 1;
+            this.txtMissingFileName.Text = global::FixContractItems.Properties.Settings.Default.txtMissingFileName;
             // 
             // label5
             // 
@@ -691,6 +782,15 @@
             this.btnWriteMoveSQL.UseVisualStyleBackColor = true;
             this.btnWriteMoveSQL.Click += new System.EventHandler(this.btnWriteMoveSQL_Click);
             // 
+            // txtOutputFileName
+            // 
+            this.txtOutputFileName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::FixContractItems.Properties.Settings.Default, "txtOutputFileName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtOutputFileName.Location = new System.Drawing.Point(113, 53);
+            this.txtOutputFileName.Name = "txtOutputFileName";
+            this.txtOutputFileName.Size = new System.Drawing.Size(1100, 20);
+            this.txtOutputFileName.TabIndex = 10;
+            this.txtOutputFileName.Text = global::FixContractItems.Properties.Settings.Default.txtOutputFileName;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -803,6 +903,26 @@
             this.btnWriteMismatched.UseVisualStyleBackColor = true;
             this.btnWriteMismatched.Click += new System.EventHandler(this.btnWriteMismatched_Click);
             // 
+            // txtMismatchedSheetName
+            // 
+            this.txtMismatchedSheetName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::FixContractItems.Properties.Settings.Default, "txtMismatchedSheetName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtMismatchedSheetName.Location = new System.Drawing.Point(139, 47);
+            this.txtMismatchedSheetName.Name = "txtMismatchedSheetName";
+            this.txtMismatchedSheetName.Size = new System.Drawing.Size(234, 20);
+            this.txtMismatchedSheetName.TabIndex = 5;
+            this.txtMismatchedSheetName.Text = global::FixContractItems.Properties.Settings.Default.txtMismatchedSheetName;
+            // 
+            // txtMismatchedOutputFileName
+            // 
+            this.txtMismatchedOutputFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMismatchedOutputFileName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::FixContractItems.Properties.Settings.Default, "txtMismatchedOutputFileName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtMismatchedOutputFileName.Location = new System.Drawing.Point(139, 13);
+            this.txtMismatchedOutputFileName.Name = "txtMismatchedOutputFileName";
+            this.txtMismatchedOutputFileName.Size = new System.Drawing.Size(1091, 20);
+            this.txtMismatchedOutputFileName.TabIndex = 4;
+            this.txtMismatchedOutputFileName.Text = global::FixContractItems.Properties.Settings.Default.txtMismatchedOutputFileName;
+            // 
             // lblMismatchSheetNameDesc
             // 
             this.lblMismatchSheetNameDesc.AutoSize = true;
@@ -885,6 +1005,36 @@
             this.splitClaimCarrierFix.SplitterDistance = 160;
             this.splitClaimCarrierFix.TabIndex = 0;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(42, 91);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(58, 13);
+            this.label11.TabIndex = 78;
+            this.label11.Text = "Output File";
+            // 
+            // txtClaimCarrierFixOutputFileName
+            // 
+            this.txtClaimCarrierFixOutputFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtClaimCarrierFixOutputFileName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::FixContractItems.Properties.Settings.Default, "txtClaimCarrierFixOutputFileName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtClaimCarrierFixOutputFileName.Location = new System.Drawing.Point(137, 88);
+            this.txtClaimCarrierFixOutputFileName.Name = "txtClaimCarrierFixOutputFileName";
+            this.txtClaimCarrierFixOutputFileName.Size = new System.Drawing.Size(1130, 20);
+            this.txtClaimCarrierFixOutputFileName.TabIndex = 77;
+            this.txtClaimCarrierFixOutputFileName.Text = global::FixContractItems.Properties.Settings.Default.txtClaimCarrierFixOutputFileName;
+            // 
+            // btnClaimCarrierFixWriteSQL
+            // 
+            this.btnClaimCarrierFixWriteSQL.Location = new System.Drawing.Point(297, 28);
+            this.btnClaimCarrierFixWriteSQL.Name = "btnClaimCarrierFixWriteSQL";
+            this.btnClaimCarrierFixWriteSQL.Size = new System.Drawing.Size(147, 38);
+            this.btnClaimCarrierFixWriteSQL.TabIndex = 76;
+            this.btnClaimCarrierFixWriteSQL.Text = "Write Update SQL";
+            this.btnClaimCarrierFixWriteSQL.UseVisualStyleBackColor = true;
+            this.btnClaimCarrierFixWriteSQL.Click += new System.EventHandler(this.btnClaimCarrierFixWriteSQL_Click);
+            // 
             // btnClaimCarrierFixRetrieve
             // 
             this.btnClaimCarrierFixRetrieve.Location = new System.Drawing.Point(38, 28);
@@ -913,6 +1063,26 @@
             this.btnWriteClaimCarrierMismatchOutput.Text = "Write Excel File";
             this.btnWriteClaimCarrierMismatchOutput.UseVisualStyleBackColor = true;
             this.btnWriteClaimCarrierMismatchOutput.Click += new System.EventHandler(this.btnWriteClaimCarrierMismatchOutput_Click);
+            // 
+            // txtClaimCarrierMismatchSheetName
+            // 
+            this.txtClaimCarrierMismatchSheetName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::FixContractItems.Properties.Settings.Default, "txtClaimCarrierMismatchSheetName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtClaimCarrierMismatchSheetName.Location = new System.Drawing.Point(138, 47);
+            this.txtClaimCarrierMismatchSheetName.Name = "txtClaimCarrierMismatchSheetName";
+            this.txtClaimCarrierMismatchSheetName.Size = new System.Drawing.Size(234, 20);
+            this.txtClaimCarrierMismatchSheetName.TabIndex = 13;
+            this.txtClaimCarrierMismatchSheetName.Text = global::FixContractItems.Properties.Settings.Default.txtClaimCarrierMismatchSheetName;
+            // 
+            // txtClaimCarrierFixOutputName
+            // 
+            this.txtClaimCarrierFixOutputName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtClaimCarrierFixOutputName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::FixContractItems.Properties.Settings.Default, "txtClaimCarrierMismatchOutputFile", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtClaimCarrierFixOutputName.Location = new System.Drawing.Point(138, 13);
+            this.txtClaimCarrierFixOutputName.Name = "txtClaimCarrierFixOutputName";
+            this.txtClaimCarrierFixOutputName.Size = new System.Drawing.Size(1091, 20);
+            this.txtClaimCarrierFixOutputName.TabIndex = 12;
+            this.txtClaimCarrierFixOutputName.Text = global::FixContractItems.Properties.Settings.Default.txtClaimCarrierMismatchOutputFile;
             // 
             // label12
             // 
@@ -953,113 +1123,488 @@
             this.dgvClaimCarrierMismatch.Size = new System.Drawing.Size(1253, 413);
             this.dgvClaimCarrierMismatch.TabIndex = 8;
             // 
-            // label11
+            // tabContractItemsUpdate
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(42, 91);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(58, 13);
-            this.label11.TabIndex = 78;
-            this.label11.Text = "Output File";
+            this.tabContractItemsUpdate.Controls.Add(this.splitContainer1);
+            this.tabContractItemsUpdate.Location = new System.Drawing.Point(4, 22);
+            this.tabContractItemsUpdate.Name = "tabContractItemsUpdate";
+            this.tabContractItemsUpdate.Padding = new System.Windows.Forms.Padding(3);
+            this.tabContractItemsUpdate.Size = new System.Drawing.Size(1269, 699);
+            this.tabContractItemsUpdate.TabIndex = 3;
+            this.tabContractItemsUpdate.Text = "Update Contract Items";
+            this.tabContractItemsUpdate.UseVisualStyleBackColor = true;
             // 
-            // btnClaimCarrierFixWriteSQL
+            // splitContainer1
             // 
-            this.btnClaimCarrierFixWriteSQL.Location = new System.Drawing.Point(297, 28);
-            this.btnClaimCarrierFixWriteSQL.Name = "btnClaimCarrierFixWriteSQL";
-            this.btnClaimCarrierFixWriteSQL.Size = new System.Drawing.Size(147, 38);
-            this.btnClaimCarrierFixWriteSQL.TabIndex = 76;
-            this.btnClaimCarrierFixWriteSQL.Text = "Write Update SQL";
-            this.btnClaimCarrierFixWriteSQL.UseVisualStyleBackColor = true;
-            this.btnClaimCarrierFixWriteSQL.Click += new System.EventHandler(this.btnClaimCarrierFixWriteSQL_Click);
-            // 
-            // txtMissingOutputFile
-            // 
-            this.txtMissingOutputFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMissingOutputFile.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::FixContractItems.Properties.Settings.Default, "txtMissingOutputFile", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtMissingOutputFile.Location = new System.Drawing.Point(113, 128);
-            this.txtMissingOutputFile.Name = "txtMissingOutputFile";
-            this.txtMissingOutputFile.Size = new System.Drawing.Size(1130, 20);
-            this.txtMissingOutputFile.TabIndex = 74;
-            this.txtMissingOutputFile.Text = global::FixContractItems.Properties.Settings.Default.txtMissingOutputFile;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.Location = new System.Drawing.Point(3, 6);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // txtMissingSheetName
+            // splitContainer1.Panel1
             // 
-            this.txtMissingSheetName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::FixContractItems.Properties.Settings.Default, "txtMissingSheetName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtMissingSheetName.Location = new System.Drawing.Point(91, 69);
-            this.txtMissingSheetName.Name = "txtMissingSheetName";
-            this.txtMissingSheetName.Size = new System.Drawing.Size(212, 20);
-            this.txtMissingSheetName.TabIndex = 3;
-            this.txtMissingSheetName.Text = global::FixContractItems.Properties.Settings.Default.txtMissingSheetName;
+            this.splitContainer1.Panel1.Controls.Add(this.btnContractItemsUpdateErrorWrite);
+            this.splitContainer1.Panel1.Controls.Add(this.btnContractItemsUpdateFindFile2);
+            this.splitContainer1.Panel1.Controls.Add(this.lblContractItemsUpdateOutputFileDesc);
+            this.splitContainer1.Panel1.Controls.Add(this.txtContractItemsUpdateWriteSQL);
+            this.splitContainer1.Panel1.Controls.Add(this.btnContractItemsUpdateWrite);
+            this.splitContainer1.Panel1.Controls.Add(this.lblContractItemsUpdateStatus2);
+            this.splitContainer1.Panel1.Controls.Add(this.btnContractItemsUpdateRetrieve);
+            this.splitContainer1.Panel1.Controls.Add(this.lblContractItemsUpdateStatus);
+            this.splitContainer1.Panel1.Controls.Add(this.btnContractItemsUpdateLoad);
+            this.splitContainer1.Panel1.Controls.Add(this.txtContractItemsUpdateSheetName);
+            this.splitContainer1.Panel1.Controls.Add(this.lblContractItemsUpdateSheetNameDesc);
+            this.splitContainer1.Panel1.Controls.Add(this.txtContractItemsUpdateFileName);
+            this.splitContainer1.Panel1.Controls.Add(this.lblContractItemsUpdateFileNameDesc);
             // 
-            // txtMissingFileName
+            // splitContainer1.Panel2
             // 
-            this.txtMissingFileName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::FixContractItems.Properties.Settings.Default, "txtMissingFileName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtMissingFileName.Location = new System.Drawing.Point(18, 42);
-            this.txtMissingFileName.Name = "txtMissingFileName";
-            this.txtMissingFileName.Size = new System.Drawing.Size(1192, 20);
-            this.txtMissingFileName.TabIndex = 1;
-            this.txtMissingFileName.Text = global::FixContractItems.Properties.Settings.Default.txtMissingFileName;
+            this.splitContainer1.Panel2.Controls.Add(this.tabContractItemsUpdateData);
+            this.splitContainer1.Size = new System.Drawing.Size(1263, 690);
+            this.splitContainer1.SplitterDistance = 155;
+            this.splitContainer1.TabIndex = 0;
             // 
-            // txtOutputFileName
+            // btnContractItemsUpdateFindFile2
             // 
-            this.txtOutputFileName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::FixContractItems.Properties.Settings.Default, "txtOutputFileName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtOutputFileName.Location = new System.Drawing.Point(113, 53);
-            this.txtOutputFileName.Name = "txtOutputFileName";
-            this.txtOutputFileName.Size = new System.Drawing.Size(1100, 20);
-            this.txtOutputFileName.TabIndex = 10;
-            this.txtOutputFileName.Text = global::FixContractItems.Properties.Settings.Default.txtOutputFileName;
+            this.btnContractItemsUpdateFindFile2.Location = new System.Drawing.Point(200, 11);
+            this.btnContractItemsUpdateFindFile2.Name = "btnContractItemsUpdateFindFile2";
+            this.btnContractItemsUpdateFindFile2.Size = new System.Drawing.Size(32, 20);
+            this.btnContractItemsUpdateFindFile2.TabIndex = 76;
+            this.btnContractItemsUpdateFindFile2.Text = ". . .";
+            this.btnContractItemsUpdateFindFile2.UseVisualStyleBackColor = true;
+            this.btnContractItemsUpdateFindFile2.Click += new System.EventHandler(this.btnContractItemsUpdateFindFile2_Click);
             // 
-            // txtMismatchedSheetName
+            // lblContractItemsUpdateOutputFileDesc
             // 
-            this.txtMismatchedSheetName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::FixContractItems.Properties.Settings.Default, "txtMismatchedSheetName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtMismatchedSheetName.Location = new System.Drawing.Point(139, 47);
-            this.txtMismatchedSheetName.Name = "txtMismatchedSheetName";
-            this.txtMismatchedSheetName.Size = new System.Drawing.Size(234, 20);
-            this.txtMismatchedSheetName.TabIndex = 5;
-            this.txtMismatchedSheetName.Text = global::FixContractItems.Properties.Settings.Default.txtMismatchedSheetName;
+            this.lblContractItemsUpdateOutputFileDesc.AutoSize = true;
+            this.lblContractItemsUpdateOutputFileDesc.Location = new System.Drawing.Point(18, 131);
+            this.lblContractItemsUpdateOutputFileDesc.Name = "lblContractItemsUpdateOutputFileDesc";
+            this.lblContractItemsUpdateOutputFileDesc.Size = new System.Drawing.Size(58, 13);
+            this.lblContractItemsUpdateOutputFileDesc.TabIndex = 75;
+            this.lblContractItemsUpdateOutputFileDesc.Text = "Output File";
             // 
-            // txtMismatchedOutputFileName
+            // txtContractItemsUpdateWriteSQL
             // 
-            this.txtMismatchedOutputFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtContractItemsUpdateWriteSQL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMismatchedOutputFileName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::FixContractItems.Properties.Settings.Default, "txtMismatchedOutputFileName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtMismatchedOutputFileName.Location = new System.Drawing.Point(139, 13);
-            this.txtMismatchedOutputFileName.Name = "txtMismatchedOutputFileName";
-            this.txtMismatchedOutputFileName.Size = new System.Drawing.Size(1091, 20);
-            this.txtMismatchedOutputFileName.TabIndex = 4;
-            this.txtMismatchedOutputFileName.Text = global::FixContractItems.Properties.Settings.Default.txtMismatchedOutputFileName;
+            this.txtContractItemsUpdateWriteSQL.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::FixContractItems.Properties.Settings.Default, "txtMissingOutputFile", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtContractItemsUpdateWriteSQL.Location = new System.Drawing.Point(113, 128);
+            this.txtContractItemsUpdateWriteSQL.Name = "txtContractItemsUpdateWriteSQL";
+            this.txtContractItemsUpdateWriteSQL.Size = new System.Drawing.Size(1130, 20);
+            this.txtContractItemsUpdateWriteSQL.TabIndex = 74;
+            this.txtContractItemsUpdateWriteSQL.Text = global::FixContractItems.Properties.Settings.Default.txtMissingOutputFile;
             // 
-            // txtClaimCarrierFixOutputFileName
+            // btnContractItemsUpdateWrite
             // 
-            this.txtClaimCarrierFixOutputFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnContractItemsUpdateWrite.Location = new System.Drawing.Point(277, 95);
+            this.btnContractItemsUpdateWrite.Name = "btnContractItemsUpdateWrite";
+            this.btnContractItemsUpdateWrite.Size = new System.Drawing.Size(188, 23);
+            this.btnContractItemsUpdateWrite.TabIndex = 73;
+            this.btnContractItemsUpdateWrite.Text = "Write Contract Items  Update SQL";
+            this.btnContractItemsUpdateWrite.UseVisualStyleBackColor = true;
+            this.btnContractItemsUpdateWrite.Click += new System.EventHandler(this.btnContractItemsUpdateWrite_Click);
+            // 
+            // lblContractItemsUpdateStatus2
+            // 
+            this.lblContractItemsUpdateStatus2.AutoSize = true;
+            this.lblContractItemsUpdateStatus2.Location = new System.Drawing.Point(704, 100);
+            this.lblContractItemsUpdateStatus2.Name = "lblContractItemsUpdateStatus2";
+            this.lblContractItemsUpdateStatus2.Size = new System.Drawing.Size(13, 13);
+            this.lblContractItemsUpdateStatus2.TabIndex = 72;
+            this.lblContractItemsUpdateStatus2.Text = "0";
+            // 
+            // btnContractItemsUpdateRetrieve
+            // 
+            this.btnContractItemsUpdateRetrieve.Location = new System.Drawing.Point(113, 95);
+            this.btnContractItemsUpdateRetrieve.Name = "btnContractItemsUpdateRetrieve";
+            this.btnContractItemsUpdateRetrieve.Size = new System.Drawing.Size(130, 23);
+            this.btnContractItemsUpdateRetrieve.TabIndex = 71;
+            this.btnContractItemsUpdateRetrieve.Text = "Retrieve Contract Info";
+            this.btnContractItemsUpdateRetrieve.UseVisualStyleBackColor = true;
+            this.btnContractItemsUpdateRetrieve.Click += new System.EventHandler(this.btnContractItemsUpdateRetrieve_Click);
+            // 
+            // lblContractItemsUpdateStatus
+            // 
+            this.lblContractItemsUpdateStatus.AutoSize = true;
+            this.lblContractItemsUpdateStatus.Location = new System.Drawing.Point(704, 69);
+            this.lblContractItemsUpdateStatus.Name = "lblContractItemsUpdateStatus";
+            this.lblContractItemsUpdateStatus.Size = new System.Drawing.Size(13, 13);
+            this.lblContractItemsUpdateStatus.TabIndex = 70;
+            this.lblContractItemsUpdateStatus.Text = "0";
+            // 
+            // btnContractItemsUpdateLoad
+            // 
+            this.btnContractItemsUpdateLoad.Location = new System.Drawing.Point(19, 95);
+            this.btnContractItemsUpdateLoad.Name = "btnContractItemsUpdateLoad";
+            this.btnContractItemsUpdateLoad.Size = new System.Drawing.Size(75, 23);
+            this.btnContractItemsUpdateLoad.TabIndex = 4;
+            this.btnContractItemsUpdateLoad.Text = "Load";
+            this.btnContractItemsUpdateLoad.UseVisualStyleBackColor = true;
+            this.btnContractItemsUpdateLoad.Click += new System.EventHandler(this.btnContractItemsUpdateLoad_Click);
+            // 
+            // txtContractItemsUpdateSheetName
+            // 
+            this.txtContractItemsUpdateSheetName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::FixContractItems.Properties.Settings.Default, "txtContractItemsUpdateSheetName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtContractItemsUpdateSheetName.Location = new System.Drawing.Point(91, 69);
+            this.txtContractItemsUpdateSheetName.Name = "txtContractItemsUpdateSheetName";
+            this.txtContractItemsUpdateSheetName.Size = new System.Drawing.Size(212, 20);
+            this.txtContractItemsUpdateSheetName.TabIndex = 3;
+            this.txtContractItemsUpdateSheetName.Text = global::FixContractItems.Properties.Settings.Default.txtContractItemsUpdateSheetName;
+            // 
+            // lblContractItemsUpdateSheetNameDesc
+            // 
+            this.lblContractItemsUpdateSheetNameDesc.AutoSize = true;
+            this.lblContractItemsUpdateSheetNameDesc.Location = new System.Drawing.Point(15, 72);
+            this.lblContractItemsUpdateSheetNameDesc.Name = "lblContractItemsUpdateSheetNameDesc";
+            this.lblContractItemsUpdateSheetNameDesc.Size = new System.Drawing.Size(66, 13);
+            this.lblContractItemsUpdateSheetNameDesc.TabIndex = 2;
+            this.lblContractItemsUpdateSheetNameDesc.Text = "Sheet Name";
+            // 
+            // txtContractItemsUpdateFileName
+            // 
+            this.txtContractItemsUpdateFileName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::FixContractItems.Properties.Settings.Default, "txtContractItemsUpdateFileName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtContractItemsUpdateFileName.Location = new System.Drawing.Point(18, 42);
+            this.txtContractItemsUpdateFileName.Name = "txtContractItemsUpdateFileName";
+            this.txtContractItemsUpdateFileName.Size = new System.Drawing.Size(1192, 20);
+            this.txtContractItemsUpdateFileName.TabIndex = 1;
+            this.txtContractItemsUpdateFileName.Text = global::FixContractItems.Properties.Settings.Default.txtContractItemsUpdateFileName;
+            // 
+            // lblContractItemsUpdateFileNameDesc
+            // 
+            this.lblContractItemsUpdateFileNameDesc.AutoSize = true;
+            this.lblContractItemsUpdateFileNameDesc.Location = new System.Drawing.Point(15, 15);
+            this.lblContractItemsUpdateFileNameDesc.Name = "lblContractItemsUpdateFileNameDesc";
+            this.lblContractItemsUpdateFileNameDesc.Size = new System.Drawing.Size(66, 13);
+            this.lblContractItemsUpdateFileNameDesc.TabIndex = 0;
+            this.lblContractItemsUpdateFileNameDesc.Text = "Premium File";
+            // 
+            // tabContractItemsUpdateData
+            // 
+            this.tabContractItemsUpdateData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtClaimCarrierFixOutputFileName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::FixContractItems.Properties.Settings.Default, "txtClaimCarrierFixOutputFileName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtClaimCarrierFixOutputFileName.Location = new System.Drawing.Point(137, 88);
-            this.txtClaimCarrierFixOutputFileName.Name = "txtClaimCarrierFixOutputFileName";
-            this.txtClaimCarrierFixOutputFileName.Size = new System.Drawing.Size(1130, 20);
-            this.txtClaimCarrierFixOutputFileName.TabIndex = 77;
-            this.txtClaimCarrierFixOutputFileName.Text = global::FixContractItems.Properties.Settings.Default.txtClaimCarrierFixOutputFileName;
+            this.tabContractItemsUpdateData.Controls.Add(this.tabContractItemsUpdateOutput);
+            this.tabContractItemsUpdateData.Controls.Add(this.tabContractItemsUpdateInput);
+            this.tabContractItemsUpdateData.Controls.Add(this.tabContractItemsUpdateExport);
+            this.tabContractItemsUpdateData.Location = new System.Drawing.Point(5, 3);
+            this.tabContractItemsUpdateData.Name = "tabContractItemsUpdateData";
+            this.tabContractItemsUpdateData.SelectedIndex = 0;
+            this.tabContractItemsUpdateData.Size = new System.Drawing.Size(1253, 514);
+            this.tabContractItemsUpdateData.TabIndex = 4;
+            this.tabContractItemsUpdateData.TabStop = false;
             // 
-            // txtClaimCarrierMismatchSheetName
+            // tabContractItemsUpdateOutput
             // 
-            this.txtClaimCarrierMismatchSheetName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::FixContractItems.Properties.Settings.Default, "txtClaimCarrierMismatchSheetName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtClaimCarrierMismatchSheetName.Location = new System.Drawing.Point(138, 47);
-            this.txtClaimCarrierMismatchSheetName.Name = "txtClaimCarrierMismatchSheetName";
-            this.txtClaimCarrierMismatchSheetName.Size = new System.Drawing.Size(234, 20);
-            this.txtClaimCarrierMismatchSheetName.TabIndex = 13;
-            this.txtClaimCarrierMismatchSheetName.Text = global::FixContractItems.Properties.Settings.Default.txtClaimCarrierMismatchSheetName;
+            this.tabContractItemsUpdateOutput.Controls.Add(this.dgvContractItemsUpdateOutput);
+            this.tabContractItemsUpdateOutput.Controls.Add(this.lblContractItemsUpdateOutputRecordCount);
+            this.tabContractItemsUpdateOutput.Controls.Add(this.btnContractItemsUpdateOutputWrite);
+            this.tabContractItemsUpdateOutput.Controls.Add(this.label22);
+            this.tabContractItemsUpdateOutput.Controls.Add(this.txtContractItemsUpdateOutputFileName);
+            this.tabContractItemsUpdateOutput.Controls.Add(this.btnContractItemsUpdateOutputExpand);
+            this.tabContractItemsUpdateOutput.Location = new System.Drawing.Point(4, 22);
+            this.tabContractItemsUpdateOutput.Name = "tabContractItemsUpdateOutput";
+            this.tabContractItemsUpdateOutput.Padding = new System.Windows.Forms.Padding(3);
+            this.tabContractItemsUpdateOutput.Size = new System.Drawing.Size(1245, 488);
+            this.tabContractItemsUpdateOutput.TabIndex = 1;
+            this.tabContractItemsUpdateOutput.Text = "Output";
+            this.tabContractItemsUpdateOutput.UseVisualStyleBackColor = true;
             // 
-            // txtClaimCarrierFixOutputName
+            // dgvContractItemsUpdateOutput
             // 
-            this.txtClaimCarrierFixOutputName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgvContractItemsUpdateOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtClaimCarrierFixOutputName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::FixContractItems.Properties.Settings.Default, "txtClaimCarrierMismatchOutputFile", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtClaimCarrierFixOutputName.Location = new System.Drawing.Point(138, 13);
-            this.txtClaimCarrierFixOutputName.Name = "txtClaimCarrierFixOutputName";
-            this.txtClaimCarrierFixOutputName.Size = new System.Drawing.Size(1091, 20);
-            this.txtClaimCarrierFixOutputName.TabIndex = 12;
-            this.txtClaimCarrierFixOutputName.Text = global::FixContractItems.Properties.Settings.Default.txtClaimCarrierMismatchOutputFile;
+            this.dgvContractItemsUpdateOutput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvContractItemsUpdateOutput.Location = new System.Drawing.Point(25, 96);
+            this.dgvContractItemsUpdateOutput.Name = "dgvContractItemsUpdateOutput";
+            this.dgvContractItemsUpdateOutput.Size = new System.Drawing.Size(1214, 386);
+            this.dgvContractItemsUpdateOutput.TabIndex = 61;
+            // 
+            // lblContractItemsUpdateOutputRecordCount
+            // 
+            this.lblContractItemsUpdateOutputRecordCount.AutoSize = true;
+            this.lblContractItemsUpdateOutputRecordCount.Location = new System.Drawing.Point(647, 36);
+            this.lblContractItemsUpdateOutputRecordCount.Name = "lblContractItemsUpdateOutputRecordCount";
+            this.lblContractItemsUpdateOutputRecordCount.Size = new System.Drawing.Size(13, 13);
+            this.lblContractItemsUpdateOutputRecordCount.TabIndex = 60;
+            this.lblContractItemsUpdateOutputRecordCount.Text = "0";
+            // 
+            // btnContractItemsUpdateOutputWrite
+            // 
+            this.btnContractItemsUpdateOutputWrite.Location = new System.Drawing.Point(95, 31);
+            this.btnContractItemsUpdateOutputWrite.Name = "btnContractItemsUpdateOutputWrite";
+            this.btnContractItemsUpdateOutputWrite.Size = new System.Drawing.Size(100, 23);
+            this.btnContractItemsUpdateOutputWrite.TabIndex = 1;
+            this.btnContractItemsUpdateOutputWrite.Text = "Write Excel";
+            this.btnContractItemsUpdateOutputWrite.UseVisualStyleBackColor = true;
+            this.btnContractItemsUpdateOutputWrite.Click += new System.EventHandler(this.btnContractItemsUpdateOutputWrite_Click);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(7, 12);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(57, 13);
+            this.label22.TabIndex = 54;
+            this.label22.Text = "File Name:";
+            // 
+            // txtContractItemsUpdateOutputFileName
+            // 
+            this.txtContractItemsUpdateOutputFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtContractItemsUpdateOutputFileName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::FixContractItems.Properties.Settings.Default, "txtContractItemsUpdateOutputFileName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtContractItemsUpdateOutputFileName.Location = new System.Drawing.Point(94, 5);
+            this.txtContractItemsUpdateOutputFileName.Name = "txtContractItemsUpdateOutputFileName";
+            this.txtContractItemsUpdateOutputFileName.Size = new System.Drawing.Size(1145, 20);
+            this.txtContractItemsUpdateOutputFileName.TabIndex = 0;
+            this.txtContractItemsUpdateOutputFileName.Text = global::FixContractItems.Properties.Settings.Default.txtContractItemsUpdateOutputFileName;
+            // 
+            // btnContractItemsUpdateOutputExpand
+            // 
+            this.btnContractItemsUpdateOutputExpand.Location = new System.Drawing.Point(345, 31);
+            this.btnContractItemsUpdateOutputExpand.Name = "btnContractItemsUpdateOutputExpand";
+            this.btnContractItemsUpdateOutputExpand.Size = new System.Drawing.Size(37, 23);
+            this.btnContractItemsUpdateOutputExpand.TabIndex = 48;
+            this.btnContractItemsUpdateOutputExpand.Text = "-";
+            this.btnContractItemsUpdateOutputExpand.UseVisualStyleBackColor = true;
+            this.btnContractItemsUpdateOutputExpand.Click += new System.EventHandler(this.btnContractItemsUpdateOutputExpand_Click);
+            // 
+            // tabContractItemsUpdateInput
+            // 
+            this.tabContractItemsUpdateInput.Controls.Add(this.txtContractItemsUpdateInputFileName);
+            this.tabContractItemsUpdateInput.Controls.Add(this.label23);
+            this.tabContractItemsUpdateInput.Controls.Add(this.btnContractItemsUpdateInputWrite);
+            this.tabContractItemsUpdateInput.Controls.Add(this.btnContractItemsUpdateInputExpand);
+            this.tabContractItemsUpdateInput.Controls.Add(this.dgvContractItemsUpdateInput);
+            this.tabContractItemsUpdateInput.Location = new System.Drawing.Point(4, 22);
+            this.tabContractItemsUpdateInput.Name = "tabContractItemsUpdateInput";
+            this.tabContractItemsUpdateInput.Padding = new System.Windows.Forms.Padding(3);
+            this.tabContractItemsUpdateInput.Size = new System.Drawing.Size(1245, 488);
+            this.tabContractItemsUpdateInput.TabIndex = 0;
+            this.tabContractItemsUpdateInput.Text = "Input";
+            this.tabContractItemsUpdateInput.UseVisualStyleBackColor = true;
+            // 
+            // txtContractItemsUpdateInputFileName
+            // 
+            this.txtContractItemsUpdateInputFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtContractItemsUpdateInputFileName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::FixContractItems.Properties.Settings.Default, "txtContractItemsUpdateInputFileName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtContractItemsUpdateInputFileName.Location = new System.Drawing.Point(69, 10);
+            this.txtContractItemsUpdateInputFileName.Name = "txtContractItemsUpdateInputFileName";
+            this.txtContractItemsUpdateInputFileName.Size = new System.Drawing.Size(882, 20);
+            this.txtContractItemsUpdateInputFileName.TabIndex = 1;
+            this.txtContractItemsUpdateInputFileName.Text = global::FixContractItems.Properties.Settings.Default.txtContractItemsUpdateInputFileName;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(6, 13);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(57, 13);
+            this.label23.TabIndex = 59;
+            this.label23.Text = "File Name:";
+            // 
+            // btnContractItemsUpdateInputWrite
+            // 
+            this.btnContractItemsUpdateInputWrite.Location = new System.Drawing.Point(10, 56);
+            this.btnContractItemsUpdateInputWrite.Name = "btnContractItemsUpdateInputWrite";
+            this.btnContractItemsUpdateInputWrite.Size = new System.Drawing.Size(100, 23);
+            this.btnContractItemsUpdateInputWrite.TabIndex = 2;
+            this.btnContractItemsUpdateInputWrite.Text = "Write Excel";
+            this.btnContractItemsUpdateInputWrite.UseVisualStyleBackColor = true;
+            this.btnContractItemsUpdateInputWrite.Click += new System.EventHandler(this.btnContractItemsUpdateInputWrite_Click);
+            // 
+            // btnContractItemsUpdateInputExpand
+            // 
+            this.btnContractItemsUpdateInputExpand.Location = new System.Drawing.Point(139, 56);
+            this.btnContractItemsUpdateInputExpand.Name = "btnContractItemsUpdateInputExpand";
+            this.btnContractItemsUpdateInputExpand.Size = new System.Drawing.Size(37, 23);
+            this.btnContractItemsUpdateInputExpand.TabIndex = 3;
+            this.btnContractItemsUpdateInputExpand.Text = "-";
+            this.btnContractItemsUpdateInputExpand.UseVisualStyleBackColor = true;
+            this.btnContractItemsUpdateInputExpand.Click += new System.EventHandler(this.btnContractItemsUpdateInputExpand_Click);
+            // 
+            // dgvContractItemsUpdateInput
+            // 
+            this.dgvContractItemsUpdateInput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvContractItemsUpdateInput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvContractItemsUpdateInput.Location = new System.Drawing.Point(3, 85);
+            this.dgvContractItemsUpdateInput.Name = "dgvContractItemsUpdateInput";
+            this.dgvContractItemsUpdateInput.Size = new System.Drawing.Size(1203, 397);
+            this.dgvContractItemsUpdateInput.TabIndex = 44;
+            // 
+            // tabContractItemsUpdateExport
+            // 
+            this.tabContractItemsUpdateExport.Controls.Add(this.splitContainer2);
+            this.tabContractItemsUpdateExport.Controls.Add(this.label24);
+            this.tabContractItemsUpdateExport.Controls.Add(this.label25);
+            this.tabContractItemsUpdateExport.Controls.Add(this.checkBox1);
+            this.tabContractItemsUpdateExport.Controls.Add(this.label26);
+            this.tabContractItemsUpdateExport.Controls.Add(this.label27);
+            this.tabContractItemsUpdateExport.Controls.Add(this.label28);
+            this.tabContractItemsUpdateExport.Controls.Add(this.button10);
+            this.tabContractItemsUpdateExport.Controls.Add(this.button11);
+            this.tabContractItemsUpdateExport.Controls.Add(this.textBox6);
+            this.tabContractItemsUpdateExport.Location = new System.Drawing.Point(4, 22);
+            this.tabContractItemsUpdateExport.Name = "tabContractItemsUpdateExport";
+            this.tabContractItemsUpdateExport.Padding = new System.Windows.Forms.Padding(3);
+            this.tabContractItemsUpdateExport.Size = new System.Drawing.Size(1245, 488);
+            this.tabContractItemsUpdateExport.TabIndex = 2;
+            this.tabContractItemsUpdateExport.Text = "Export Data";
+            this.tabContractItemsUpdateExport.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.splitContainer2.Location = new System.Drawing.Point(6, 97);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.dataGridView3);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.dataGridView4);
+            this.splitContainer2.Panel2.Controls.Add(this.dataGridView5);
+            this.splitContainer2.Size = new System.Drawing.Size(1194, 257);
+            this.splitContainer2.SplitterDistance = 93;
+            this.splitContainer2.TabIndex = 73;
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Location = new System.Drawing.Point(5, 0);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.Size = new System.Drawing.Size(1184, 10);
+            this.dataGridView3.TabIndex = 66;
+            // 
+            // dataGridView4
+            // 
+            this.dataGridView4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Location = new System.Drawing.Point(3, 143);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.Size = new System.Drawing.Size(1182, 10);
+            this.dataGridView4.TabIndex = 74;
+            // 
+            // dataGridView5
+            // 
+            this.dataGridView5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView5.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView5.Name = "dataGridView5";
+            this.dataGridView5.Size = new System.Drawing.Size(1182, 10);
+            this.dataGridView5.TabIndex = 73;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(629, 72);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(35, 13);
+            this.label24.TabIndex = 71;
+            this.label24.Text = "Items:";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(413, 73);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(34, 13);
+            this.label25.TabIndex = 70;
+            this.label25.Text = "Certs:";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(267, 72);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(100, 17);
+            this.checkBox1.TabIndex = 3;
+            this.checkBox1.Text = "Write Headers?";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(684, 73);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(13, 13);
+            this.label26.TabIndex = 67;
+            this.label26.Text = "0";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(457, 73);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(13, 13);
+            this.label27.TabIndex = 66;
+            this.label27.Text = "0";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(15, 29);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(57, 13);
+            this.label28.TabIndex = 64;
+            this.label28.Text = "File Name:";
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(20, 68);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(100, 23);
+            this.button10.TabIndex = 1;
+            this.button10.Text = "Write Excel";
+            this.button10.UseVisualStyleBackColor = true;
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(153, 68);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(37, 23);
+            this.button11.TabIndex = 2;
+            this.button11.Text = "-";
+            this.button11.UseVisualStyleBackColor = true;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox6.Location = new System.Drawing.Point(83, 22);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(882, 20);
+            this.textBox6.TabIndex = 0;
+            // 
+            // btnContractItemsUpdateErrorWrite
+            // 
+            this.btnContractItemsUpdateErrorWrite.Location = new System.Drawing.Point(481, 95);
+            this.btnContractItemsUpdateErrorWrite.Name = "btnContractItemsUpdateErrorWrite";
+            this.btnContractItemsUpdateErrorWrite.Size = new System.Drawing.Size(188, 23);
+            this.btnContractItemsUpdateErrorWrite.TabIndex = 77;
+            this.btnContractItemsUpdateErrorWrite.Text = "Write Contract Items  Error File";
+            this.btnContractItemsUpdateErrorWrite.UseVisualStyleBackColor = true;
+            this.btnContractItemsUpdateErrorWrite.Click += new System.EventHandler(this.btnContractItemsUpdateErrorWrite_Click);
             // 
             // frmFixContractItems
             // 
@@ -1112,6 +1657,28 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitClaimCarrierFix)).EndInit();
             this.splitClaimCarrierFix.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvClaimCarrierMismatch)).EndInit();
+            this.tabContractItemsUpdate.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.tabContractItemsUpdateData.ResumeLayout(false);
+            this.tabContractItemsUpdateOutput.ResumeLayout(false);
+            this.tabContractItemsUpdateOutput.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvContractItemsUpdateOutput)).EndInit();
+            this.tabContractItemsUpdateInput.ResumeLayout(false);
+            this.tabContractItemsUpdateInput.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvContractItemsUpdateInput)).EndInit();
+            this.tabContractItemsUpdateExport.ResumeLayout(false);
+            this.tabContractItemsUpdateExport.PerformLayout();
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1202,6 +1769,50 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtClaimCarrierFixOutputFileName;
         private System.Windows.Forms.Button btnClaimCarrierFixWriteSQL;
+        private System.Windows.Forms.TabPage tabContractItemsUpdate;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Label lblContractItemsUpdateOutputFileDesc;
+        private System.Windows.Forms.TextBox txtContractItemsUpdateWriteSQL;
+        private System.Windows.Forms.Button btnContractItemsUpdateWrite;
+        private System.Windows.Forms.Label lblContractItemsUpdateStatus2;
+        private System.Windows.Forms.Button btnContractItemsUpdateRetrieve;
+        private System.Windows.Forms.Label lblContractItemsUpdateStatus;
+        private System.Windows.Forms.Button btnContractItemsUpdateFindFile;
+        private System.Windows.Forms.Button btnContractItemsUpdateLoad;
+        private System.Windows.Forms.TextBox txtContractItemsUpdateSheetName;
+        private System.Windows.Forms.Label lblContractItemsUpdateSheetNameDesc;
+        private System.Windows.Forms.TextBox txtContractItemsUpdateFileName;
+        private System.Windows.Forms.Label lblContractItemsUpdateFileNameDesc;
+        private System.Windows.Forms.TabControl tabContractItemsUpdateData;
+        private System.Windows.Forms.TabPage tabContractItemsUpdateOutput;
+        private System.Windows.Forms.DataGridView dgvContractItemsUpdateOutput;
+        private System.Windows.Forms.Label lblContractItemsUpdateOutputRecordCount;
+        private System.Windows.Forms.Button btnContractItemsUpdateOutputWrite;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox txtContractItemsUpdateOutputFileName;
+        private System.Windows.Forms.Button btnContractItemsUpdateOutputExpand;
+        private System.Windows.Forms.TabPage tabContractItemsUpdateInput;
+        private System.Windows.Forms.TextBox txtContractItemsUpdateInputFileName;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Button btnContractItemsUpdateInputWrite;
+        private System.Windows.Forms.Button btnContractItemsUpdateInputExpand;
+        private System.Windows.Forms.DataGridView dgvContractItemsUpdateInput;
+        private System.Windows.Forms.TabPage tabContractItemsUpdateExport;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridView dataGridView4;
+        private System.Windows.Forms.DataGridView dataGridView5;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Button btnContractItemsUpdateFindFile2;
+        private System.Windows.Forms.Button btnContractItemsUpdateErrorWrite;
     }
 }
 
