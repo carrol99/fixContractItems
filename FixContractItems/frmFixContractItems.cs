@@ -903,6 +903,13 @@ namespace FixContractItems
 
             string sBatchconnum = vRow["batchconnum"].ToString();
 
+            if (sBatchconnum.Trim().Length ==0)
+            {
+                vRow["isItemFound"] = "N";
+                isFound = false;
+                return isFound;
+            }
+
             string sql = string.Format(sqlFMT, sBatchconnum);
 
             _SqlDataRoutines.SQLString = sql;
