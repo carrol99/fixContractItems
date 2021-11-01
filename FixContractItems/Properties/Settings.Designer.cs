@@ -178,5 +178,17 @@ namespace FixContractItems.Properties {
                 this["txtContractItemsUpdateInputFileName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string txtContractItemsUpdateWriteSQL {
+            get {
+                return ((string)(this["txtContractItemsUpdateWriteSQL"]));
+            }
+            set {
+                this["txtContractItemsUpdateWriteSQL"] = value;
+            }
+        }
     }
 }

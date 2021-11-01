@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Text;
 using LineItemCancels;
 using ContractExcelToXml;
+using System.Diagnostics;
 
 namespace FixContractItems
 {
@@ -21,7 +22,7 @@ namespace FixContractItems
         Int32 maxToWrite = 0;
         string Tier = "";
         string tempDir;
-        string Version = ".9";
+        string Version = "1.0";
         DataTable dtMismatches;
         DataTable dtClaimCarrierMismatches;
         LineItems _lineItem;
@@ -38,12 +39,16 @@ namespace FixContractItems
         Int32 ContractsFound = 0;
         Int32 ItemsFound = 0;
         Int32 ItemsNotFound = 0;
+        Int32 ItemDetailsFound = 0;
+        Int32 ItemDetailsNotFound = 0;
         Int32 ItemsDetailsMatch = 0;
         Int32 ItemsDetailsNotMatch = 0;
         Int32 seqnum = 0;
         DateTime currentUpdateTime = DateTime.Now;
         Int32 skipRecords = 00;
         string UpdateItemsOption = "UpdateItems";
+        Int32 ItemsNeedUpdate = 0;
+        Int32 ItemsNotNeedUpdate = 0;
 
         public frmFixContractItems()
         {
@@ -74,6 +79,7 @@ namespace FixContractItems
             _SqlDataRoutines = new DbDataRoutines(sConnectionString);
             _SqlDataRoutines.DefaultCommandTimeout = 600;
 
+            lblVersion.Text = Version;
 
         }
 
@@ -802,6 +808,8 @@ namespace FixContractItems
             ItemsNotFound = 0;
             ItemsDetailsMatch = 0;
             ItemsDetailsNotMatch = 0;
+            ItemsNeedUpdate = 0;
+            ItemsNotNeedUpdate = 0;
 
             string prevInvoiceNo = "";
 
@@ -847,46 +855,58 @@ namespace FixContractItems
                 {
                     Int32 i = dtTest.Rows.Count;
                     DataRow newRow = dtTest.Rows[i - 1];
+
                     RetrieveContractItem(newRow);
-                }
 
-                if (displayCount >= maxDisplayCount)
-                {
-                    displayCount = 1;
-                    lStatus.Text = readCount.ToString();
-                    if (vOption == UpdateItemsOption)
+                    if (newRow["itemNeedsUpdate"].ToString() == "Y")
                     {
-                        lStatus2.Text = "Contracts: " + ContractsFound.ToString()
-                            + "  Contracts No Items:" + ContractsWithNoItems.ToString()
-                            + " Items found:" + ItemsFound.ToString()
-                            + " No Items:" + ItemsNotFound.ToString()
-                            + " Details Match:" + ItemsDetailsMatch.ToString()
-                            + " No Match:" + ItemsDetailsNotMatch.ToString();
-
+                        ItemsNeedUpdate += 1;
                     }
                     else
                     {
-                        lStatus2.Text = "Contracts: " + ContractsFound.ToString()
-                            + "  Contracts No Items:" + ContractsWithNoItems.ToString()
-                            + " Items found:" + ItemsFound.ToString()
-                            + " No Items:" + ItemsNotFound.ToString();
-
+                        ItemsNotNeedUpdate += 1;
                     }
-                    Application.DoEvents();
+                }
+                    if (displayCount >= maxDisplayCount)
+                    {
+                        displayCount = 1;
+                        lStatus.Text = readCount.ToString();
+                        if (vOption == UpdateItemsOption)
+                        {
+                            lStatus2.Text = "Contracts: " + ContractsFound.ToString()
+                                + "  Contracts No Items:" + ContractsWithNoItems.ToString()
+                                + " Items found:" + ItemsFound.ToString()
+                                + " No Items:" + ItemsNotFound.ToString()
+                                + " Details Match:" + ItemsDetailsMatch.ToString()
+                                + " No Match:" + ItemsDetailsNotMatch.ToString()
+                                + " Needs Update:" + ItemsNeedUpdate.ToString()
+                                + " No Update Needed:" + ItemsNotNeedUpdate.ToString();
+
+                        }
+                        else
+                        {
+                            lStatus2.Text = "Contracts: " + ContractsFound.ToString()
+                                + "  Contracts No Items:" + ContractsWithNoItems.ToString()
+                                + " Items found:" + ItemsFound.ToString()
+                                + " No Items:" + ItemsNotFound.ToString();
+
+                        }
+                        Application.DoEvents();
+                    }
+
+                    if (readCount > maxToRead && maxToRead > 0)
+                    {
+                        break;
+                    }
                 }
 
-                if (readCount > maxToRead && maxToRead > 0)
-                {
-                    break;
-                }
-            }
+                dgv.DataSource = dtTest;
+                dgv.Refresh();
 
-            dgv.DataSource = dtTest;
-            dgv.Refresh();
+                log.Info("Finished RetrieveDataForAddItems(" + vOption + "):" + DateTime.Now.ToString());
+                log.Info("Contracts found: " + ContractsFound.ToString() + " contracts not found: " + ContractsNotFound.ToString());
+                log.Info("Contracts With Items: " + ContractsWithItems.ToString() + " Contract With NO Items: " + ContractsWithNoItems.ToString());
 
-            log.Info("Finished RetrieveDataForAddItems(" + vOption + "):" + DateTime.Now.ToString());
-            log.Info("Contracts found: " + ContractsFound.ToString() + " contracts not found: " + ContractsNotFound.ToString());
-            log.Info("Contracts With Items: " + ContractsWithItems.ToString() + " Contract With NO Items: " + ContractsWithNoItems.ToString());
 
         }
 
@@ -899,18 +919,43 @@ namespace FixContractItems
                 _SqlDataRoutines.ConnectionString = sConnectionString;
             }
 
-            string sqlFMT = "Select * from contractitems where contractitems.batchconnum = {0} ";
+            ItemDetailsFound = 0;
+            ItemDetailsNotFound = 0;
+            string itemTotalCount = vRow["itemCount"].ToString();
 
+            string inItemId;
+            inItemId = vRow["sItemId"].ToString();
+
+            string inDesc = vRow["Description"].ToString();
+
+            string inMfg = vRow["Manufacturer"].ToString();
+            string inModel = vRow["Model"].ToString();
+            string inSerialnum = vRow["Serial_Number"].ToString();
             string sBatchconnum = vRow["batchconnum"].ToString();
+            string inCost = vRow["Purchase_price"].ToString();
+            string inInvoiceNo = vRow["InvoiceNo"].ToString();
 
-            if (sBatchconnum.Trim().Length ==0)
+            if (sBatchconnum.Trim().Length == 0)
             {
                 vRow["isItemFound"] = "N";
                 isFound = false;
                 return isFound;
             }
 
-            string sql = string.Format(sqlFMT, sBatchconnum);
+            string sqlFMT;
+            if (itemTotalCount == "1")
+            {
+                sqlFMT = $"Select * from contractitems where contractitems.batchconnum = {sBatchconnum} ";
+            }
+            else
+            {
+                sqlFMT = $"Select * from contractitems where contractItems.batchconnum = {sBatchconnum} " +
+                    // $"and mfg = '{inMfg}' and model = '{inModel}' and serialNum = '{inSerialnum}' and sitemid <> '{inItemId}'";
+                    $"and mfg = '{inMfg}' and model = '{inModel}' and serialNum = '{inSerialnum}' and cost = '{inCost}' and description = '{inDesc}'";
+            }
+
+
+            string sql = sqlFMT;
 
             _SqlDataRoutines.SQLString = sql;
 
@@ -920,11 +965,18 @@ namespace FixContractItems
             {
                 vRow["isItemFound"] = "N";
                 isFound = false;
+                ItemDetailsNotFound += 1;
+                vRow["detailsMatch"] = "N";
+                ItemsDetailsNotMatch += 1;
+                vRow["itemNeedsUpdate"] = "*";
+
             }
             else
             {
                 vRow["isItemFound"] = dt.Rows.Count.ToString();
                 isFound = true;
+                ItemDetailsFound += 1;
+
             }
 
             if (!isFound)
@@ -932,42 +984,80 @@ namespace FixContractItems
                 return isFound;
             }
 
-            DataRow myRow = dt.Rows[0];
-            string ciUK = myRow["uniquekey"].ToString();
+            Int32 itemsMatch = 0;
 
-            string sItemId;
-            sItemId = vRow["sItemId"].ToString();
-            string ciItemID = myRow["sItemID"].ToString();
-            if (sItemId == ciItemID)
+            foreach (DataRow myRow in dt.Rows)
             {
-                vRow["itemNeedsUpdate"] = "N";
-            }
-            else
-            {
-                vRow["itemNeedsUpdate"] = "Y";
+
+                string ciUK = myRow["uniquekey"].ToString();
+
+                string ciItemID = myRow["sItemID"].ToString();
+                string desc = myRow["Description"].ToString();
+                string mfg = myRow["MFG"].ToString();
+                string model = myRow["Model"].ToString();
+                string serialnum = myRow["SerialNum"].ToString();
+                string lastupdate = myRow["Lastupdate"].ToString();
+                string cost = myRow["cost"].ToString();
+
+                vRow["ciMFG"] = mfg;
+                vRow["ciModel"] = model;
+                vRow["ciDesc"] = desc;
+                vRow["ciQTY"] = myRow["quantity"].ToString();
+                vRow["ciItemID"] = ciItemID;
+                vRow["ciSerial"] = serialnum;
+                vRow["ciCost"] = myRow["Cost"].ToString();
+                vRow["ciLastUpdate"] = lastupdate;
+
+                string sItemNeedsUpdate = "Y";
+
+                if (inItemId == ciItemID)
+                {
+                    vRow["itemNeedsUpdate"] = "N";
+                    sItemNeedsUpdate = "N";
+                }
+                else
+                {
+                    vRow["itemNeedsUpdate"] = "Y";
+                }
+
+                vRow["ciUK"] = ciUK;
+
+                double dCost = 0;
+                double.TryParse(cost, out dCost);
+                double dInCost = 0;
+                double.TryParse(inCost, out dInCost);
+
+                if (desc == inDesc
+                    && mfg == inMfg
+                    && model == inModel
+                    && serialnum == inSerialnum
+                    && dCost == dInCost
+                    )
+
+                {
+                    itemsMatch += 1;
+                    if (sItemNeedsUpdate == "N")
+                    {
+                        break;
+                    }
+
+                }
+                else
+                {
+                    string x = "dummy";
+                }
             }
 
-            vRow["ciUK"] = ciUK;
-            vRow["ciMFG"] = myRow["MFG"].ToString();
-            vRow["ciModel"] = myRow["Model"].ToString();
-            vRow["ciDesc"] = myRow["Description"].ToString();
-            vRow["ciQTY"] = myRow["quantity"].ToString();
-            vRow["ciItemID"] = myRow["sItemID"].ToString();
-            vRow["ciSerial"] = myRow["SerialNum"].ToString();
-            vRow["ciCost"] = myRow["Cost"].ToString();
-
-            if (myRow["Description"].ToString() != vRow["Description"].ToString()
-                || myRow["MFG"].ToString() != vRow["Manufacturer"].ToString()
-                || myRow["Model"].ToString() != vRow["Model"].ToString()
-                || myRow["SerialNum"].ToString() != vRow["Serial_Number"].ToString()
-                )
+            if (itemsMatch == 0)
             {
                 vRow["detailsMatch"] = "N";
                 ItemsDetailsNotMatch += 1;
+                vRow["itemNeedsUpdate"] = "*";
+
             }
             else
             {
-                vRow["detailsMatch"] = "Y";
+                vRow["detailsMatch"] = itemsMatch.ToString();
                 ItemsDetailsMatch += 1;
             }
 
@@ -989,6 +1079,10 @@ namespace FixContractItems
             sDealer = vRow["Dealer"].ToString();
             sStore = vRow["Store_number"].ToString();
 
+            if (sDealer.Length == 0)
+            {
+                sDealer = "25398";
+            }
             string sqlFMT = "Select (select count(*) from contractitems where contractitems.batchconnum=batchcontract.uniquekey) as ItemCount,batchcontract.* From Batchcontract " +
                 "inner join batchheader on batchheader.uniquekey = batchcontract.batchnum " +
                 "inner join dealer on dealer.uniquekey = batchheader.dealer " +
@@ -1037,6 +1131,7 @@ namespace FixContractItems
                 newRow["Purchase_Price"] = vRow["Purchase_Price"].ToString();
                 newRow["Description"] = vRow["Description"].ToString();
                 newRow["sItemID"] = vRow["ItemProductID"].ToString();
+                newRow["entrydate"] = dr1["entrydate"].ToString();
 
                 newRow["FirstName"] = dr1["FirstName"];
                 newRow["LastName"] = dr1["LastName"];                                                                                                                            
@@ -1074,27 +1169,30 @@ namespace FixContractItems
                     "itemCount",
                     "isItemFound",
                     "itemNeedsUpdate",
+                    "batchconnum",
                     "detailsMatch",
+                    "entrydate",
+                    "sItemID",
+                    "ciItemId",
+                    "ciCost",
+                    "purchase_price",
                     "ciUK",
                     "ciDesc",
                     "ciModel",
                     "ciMFG",
                     "ciSerial",
                     "ciQty",
-                    "ciItemId",
-                    "ciCost",
-                    "batchconnum",
+                    "ciLastUpdate",
                     "batchnumber",
                     "Certificate",
                     "manufacturer",
                     "model",
                     "description",
                     "quantity",
-                    "serial_number",
-                    "purchase_price",
+                    "serial_number", 
                     "firstname",
                     "lastName",
-                    "sItemID",
+ 
                     "sUniTran",
                     "seqnum",
                     "reccount",
@@ -1574,10 +1672,16 @@ namespace FixContractItems
             btn.Enabled = false;
             Cursor = Cursors.WaitCursor;
 
+            System.Diagnostics.Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+
             RetrieveDataForAddItems(dtContractItemsUpdateOutput, "UpdateItems");
 
-            //ValidateItems(dtContractItemsUpdateOutput);
+            stopWatch.Stop();
+            TimeSpan elapsed = stopWatch.Elapsed;
 
+            //ValidateItems(dtContractItemsUpdateOutput);
+            lblContractItemsUpdateStatus.Text = "Elapsed:" + elapsed.ToString();
 
             if (isFatalError)
             {
@@ -1591,6 +1695,8 @@ namespace FixContractItems
         private void btnContractItemsUpdateWrite_Click(object sender, EventArgs e)
         {
             WriteContractItemsUpdate(txtContractItemsUpdateWriteSQL.Text.Trim());
+
+            MessageBox.Show("Finished Writing File");
         }
 
         private void btnContractItemsUpdateOutputWrite_Click(object sender, EventArgs e)
@@ -1618,7 +1724,7 @@ namespace FixContractItems
                 string sFileName = FindFileName(txtContractItemsUpdateFileName);
         }
 
-        private string WriteContractItemsUpdate(string vFileName)
+        private string WriteContractItemsUpdate(string vFileName, string vOption="")
         {
             string sSQL = "";
 
@@ -1634,16 +1740,37 @@ namespace FixContractItems
                 string sItemID = myRow["sItemID"].ToString();
                 string isDetailsMatch = "";
                 isDetailsMatch = myRow["detailsMatch"].ToString();
-                if (isDetailsMatch != "Y")
+                if (isDetailsMatch == "N")
                 {
                     numNotFound += 1;
                     continue;
                 }
-
+                string itemNeedUpdate = myRow["ItemNeedsUpdate"].ToString();
                 numFound += 1;
 
-                string sSQLFmt = "update  contractitems set sItemid = '" + sItemID +
-                    "' where uniquekey = '" + uk.ToString() + "';";
+                if (itemNeedUpdate != "Y")
+                {
+                    continue;
+                }
+
+                string desc = myRow["Description"].ToString();
+                string batchconnum = myRow["batchconnum"].ToString();
+                string mfg = myRow["Manufacturer"].ToString();
+                string model = myRow["Model"].ToString();
+                string serialNum = myRow["Serial_Number"].ToString();
+                string inCost = myRow["purchase_price"].ToString();
+                string sSQLFmt;
+                if (vOption == "")
+                {
+                    sSQLFmt = $"update  contractitems set sItemid = '{sItemID}' " +
+                        $" where batchconnum = '{batchconnum}' and description = '{desc}' and mfg = '{mfg}' and model = '{model}' and serialnum = '{serialNum}' and cost = '{inCost}';";
+                }
+                else
+                {
+                    sSQLFmt = $"update top(1) contractitems set sItemid = '{sItemID}' " +
+                        $" where batchconnum = '{batchconnum}' and description = '{desc}' and mfg = '{mfg}' and model = '{model}' and serialnum = '{serialNum}' and cost = '{inCost}';";
+
+                }
                 outputFile.WriteLine(sSQLFmt);
 
             }
@@ -1656,18 +1783,29 @@ namespace FixContractItems
 
         private void btnContractItemsUpdateErrorWrite_Click(object sender, EventArgs e)
         {
-            WriteContractItemsUpdateErrors(txtContractItemsUpdateFileName.Text);
+            WriteContractItemsUpdateErrors(txtContractItemsUpdateWriteSQL.Text);
+
+            MessageBox.Show("Finished Writing File");
+
         }
         private string WriteContractItemsUpdateErrors(string vFileName)
         {
             string sSQL = "";
 
-            StreamWriter outputFile = new StreamWriter(vFileName);
+            StreamWriter outputFile;
+            //outputFile = new StreamWriter(vFileName);
             DataTable dt = (DataTable)dgvContractItemsUpdateOutput.DataSource;
             Int32 numFound = 0;
             Int32 numNotFound = 0;
 
             BuildCSV _build = new BuildCSV();
+ 
+            _build.CreateCSVHeaders(dt);
+            _build.OpenCSVFile(vFileName);
+
+            _build.WriteCSVLine(_build.CreateCSVHeaders(dt));
+
+            outputFile = _build.CSVFile;
 
             foreach (DataRow myRow in dt.Rows)
             {
@@ -1676,28 +1814,33 @@ namespace FixContractItems
                 string sItemID = myRow["sItemID"].ToString();
                 string isDetailsMatch = "";
                 isDetailsMatch = myRow["detailsMatch"].ToString();
-                if (isDetailsMatch == "Y")
+                if (!(isDetailsMatch == "N"  || isDetailsMatch == "*" ))
                 {
-                   // numNotFound += 1;
-                   // continue;
+                   numFound += 1;
+                   continue;
                 }
 
-
-                numFound += 1;
-
+                numNotFound += 1;
 
                 string sSQLFmt;
 
                 sSQLFmt =(string) _build.CreateCSVLine(myRow);
 
-                outputFile.WriteLine(sSQLFmt);
+                _build.WriteCSVLine(sSQLFmt);
 
             }
 
-            outputFile.WriteLine("--Num Found:" + numFound.ToString() + " not found:" + numNotFound.ToString());
+            outputFile.WriteLine("--Num Found:" + numFound.ToString() + " not found :" + numNotFound.ToString());
             outputFile.Close();
 
             return sSQL;
+        }
+
+        private void btnContractItemsUpdateWrite2_Click(object sender, EventArgs e)
+        {
+            WriteContractItemsUpdate(txtContractItemsUpdateWriteSQL.Text.Trim(),"2");
+
+            MessageBox.Show("Finished Writing File");
         }
     }
 }

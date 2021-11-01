@@ -41,5 +41,8 @@
     <Setting Name="txtContractItemsUpdateInputFileName" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="txtContractItemsUpdateWriteSQL" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>
