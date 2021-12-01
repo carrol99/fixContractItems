@@ -1132,6 +1132,7 @@ namespace FixContractItems
                 newRow["Description"] = vRow["Description"].ToString();
                 newRow["sItemID"] = vRow["ItemProductID"].ToString();
                 newRow["entrydate"] = dr1["entrydate"].ToString();
+                newRow["cancelentrydate"] = dr1["cancelentrydate"].ToString();
 
                 newRow["FirstName"] = dr1["FirstName"];
                 newRow["LastName"] = dr1["LastName"];                                                                                                                            
@@ -1170,6 +1171,8 @@ namespace FixContractItems
                     "isItemFound",
                     "itemNeedsUpdate",
                     "batchconnum",
+                    "cancelentrydate",
+                    "entrydate",
                     "detailsMatch",
                     "entrydate",
                     "sItemID",
