@@ -33,6 +33,7 @@
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabContractItemsUpdate = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label15 = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
             this.btnContractItemsUpdateWrite2 = new System.Windows.Forms.Button();
             this.btnContractItemsUpdateErrorWrite = new System.Windows.Forms.Button();
@@ -156,7 +157,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.btnClaimCarrierMismatchExpand = new System.Windows.Forms.Button();
             this.dgvClaimCarrierMismatch = new System.Windows.Forms.DataGridView();
-            this.label15 = new System.Windows.Forms.Label();
+            this.btnContractItemsUpdateRetrieveMissingSitemId = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tabContractItemsUpdate.SuspendLayout();
@@ -264,6 +265,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btnContractItemsUpdateRetrieveMissingSitemId);
             this.splitContainer1.Panel1.Controls.Add(this.label15);
             this.splitContainer1.Panel1.Controls.Add(this.lblVersion);
             this.splitContainer1.Panel1.Controls.Add(this.btnContractItemsUpdateWrite2);
@@ -287,6 +289,16 @@
             this.splitContainer1.Size = new System.Drawing.Size(1479, 716);
             this.splitContainer1.SplitterDistance = 155;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(431, 15);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(386, 13);
+            this.label15.TabIndex = 80;
+            this.label15.Text = "Update the sitemid field from the input file into the contract items in the data " +
+    "base";
             // 
             // lblVersion
             // 
@@ -1631,15 +1643,15 @@
             this.dgvClaimCarrierMismatch.Size = new System.Drawing.Size(1253, 413);
             this.dgvClaimCarrierMismatch.TabIndex = 8;
             // 
-            // label15
+            // btnContractItemsUpdateRetrieveMissingSitemId
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(431, 15);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(386, 13);
-            this.label15.TabIndex = 80;
-            this.label15.Text = "Update the sitemid field from the input file into the contract items in the data " +
-    "base";
+            this.btnContractItemsUpdateRetrieveMissingSitemId.Location = new System.Drawing.Point(846, 69);
+            this.btnContractItemsUpdateRetrieveMissingSitemId.Name = "btnContractItemsUpdateRetrieveMissingSitemId";
+            this.btnContractItemsUpdateRetrieveMissingSitemId.Size = new System.Drawing.Size(191, 23);
+            this.btnContractItemsUpdateRetrieveMissingSitemId.TabIndex = 81;
+            this.btnContractItemsUpdateRetrieveMissingSitemId.Text = "Find Missing sItemID For Badcock";
+            this.btnContractItemsUpdateRetrieveMissingSitemId.UseVisualStyleBackColor = true;
+            this.btnContractItemsUpdateRetrieveMissingSitemId.Click += new System.EventHandler(this.btnContractItemsUpdateRetrieveMissingSitemId_Click);
             // 
             // frmFixContractItems
             // 
@@ -1851,6 +1863,7 @@
         private System.Windows.Forms.Button btnContractItemsUpdateWrite2;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button btnContractItemsUpdateRetrieveMissingSitemId;
     }
 }
 

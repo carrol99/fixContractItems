@@ -49,6 +49,7 @@ namespace FixContractItems
         string UpdateItemsOption = "UpdateItems";
         Int32 ItemsNeedUpdate = 0;
         Int32 ItemsNotNeedUpdate = 0;
+        bool isCheckCostOnMatchItems = false;
 
         public frmFixContractItems()
         {
@@ -950,10 +951,13 @@ namespace FixContractItems
             else
             {
                 sqlFMT = $"Select * from contractitems where contractItems.batchconnum = {sBatchconnum} " +
-                    // $"and mfg = '{inMfg}' and model = '{inModel}' and serialNum = '{inSerialnum}' and sitemid <> '{inItemId}'";
-                    $"and mfg = '{inMfg}' and model = '{inModel}' and serialNum = '{inSerialnum}' and cost = '{inCost}' and description = '{inDesc}'";
-            }
+                    $"and mfg = '{inMfg}' and model = '{inModel}' and serialNum = '{inSerialnum}'  and description = '{inDesc}' ";
 
+                if (isCheckCostOnMatchItems)
+                {
+                    sqlFMT += $" and cost = '{inCost}' ";
+                }
+            }
 
             string sql = sqlFMT;
 
@@ -1023,9 +1027,13 @@ namespace FixContractItems
                 vRow["ciUK"] = ciUK;
 
                 double dCost = 0;
-                double.TryParse(cost, out dCost);
                 double dInCost = 0;
-                double.TryParse(inCost, out dInCost);
+
+                if (isCheckCostOnMatchItems)
+                {
+                    double.TryParse(cost, out dCost);
+                    double.TryParse(inCost, out dInCost);
+                }
 
                 if (desc == inDesc
                     && mfg == inMfg
@@ -1568,6 +1576,47 @@ namespace FixContractItems
             return dt;
 
         }
+        private DataTable RetrieveMissingItemIDForBadcock()
+        {
+            DataTable dt;
+
+            StringBuilder sbSQL = new StringBuilder();
+            sbSQL.Append("SELECT ");
+            sbSQL.Append("count(*), ");
+            sbSQL.Append("min(dealergroup.sgroupnumber) as minDGNumber, ");
+            sbSQL.Append("min(contractitems.uniquekey) as minciUK, ");
+            sbSQL.Append("max(contractitems.uniquekey) as maxCIUK, ");
+            sbSQL.Append("convert(date,entrydate) as entrydate, ");
+            sbSQL.Append("datepart(hour,entrydate) as entryhour, ");
+            sbSQL.Append("min(entrydate) as minEntrydate, ");
+            sbSQL.Append("max(entrydate) as maxEntrydate, ");
+            sbSQL.Append("min(expirationdate) as minExpirationDate, ");
+            sbSQL.Append("max(expirationdate) as maxExpirationDate, ");
+            sbSQL.Append("min(dealernumber) as minDealerNumber, ");
+            sbSQL.Append("min(dealername) as mindealername ");
+            sbSQL.Append("FROM ");
+            sbSQL.Append("batchcontract ");
+            sbSQL.Append("INNER JOIN contractitems ON contractitems.BatchConNum = batchcontract.uniquekey ");
+            sbSQL.Append("INNER JOIN batchheader ON batchheader.uniquekey = batchcontract.BatchNum ");
+            sbSQL.Append("INNER JOIN dealer ON dealer.uniquekey = batchheader.dealer ");
+            sbSQL.Append("INNER JOIN product ON product.uniquekey = batchcontract.iProduct ");
+            sbSQL.Append("INNER JOIN dealergroupSELECT ON dealergroupselect.iDealer = dealer.uniquekey ");
+            sbSQL.Append("INNER JOIN dealergroup ON dealergroup.uniquekey = dealergroupselect.iDealerGroup ");
+            sbSQL.Append("WHERE ");
+            sbSQL.Append("convert(date,batchcontract.entrydate) >= '2021-11-01' ");
+            sbSQL.Append("and cancelentrydate is null ");
+            sbSQL.Append("and sitemid = '' ");
+            sbSQL.Append("and sgroupnumber = 'badcock' ");
+            sbSQL.Append("GROUP BY convert(date,entrydate), datepart(hour,entrydate) ");
+            sbSQL.Append("ORDER BY ");
+            sbSQL.Append("convert(date,batchcontract.entrydate) desc, DATEPART(HOUR,batchcontract.entrydate) desc ");
+
+            _SqlDataRoutines.SQLString = sbSQL.ToString();
+            dt = _SqlDataRoutines.getTableFromDB();
+
+            return dt;
+
+        }
         private void btnClaimCarrierFixRetrieve_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
@@ -1647,8 +1696,6 @@ namespace FixContractItems
             outputFile.Close();
 
         }
-
-
 
         private void btnContractItemsUpdateLoad_Click(object sender, EventArgs e)
         {
@@ -1756,12 +1803,12 @@ namespace FixContractItems
                     continue;
                 }
 
-                string desc = myRow["Description"].ToString();
+                string desc = myRow["ciDesc"].ToString();
                 string batchconnum = myRow["batchconnum"].ToString();
-                string mfg = myRow["Manufacturer"].ToString();
-                string model = myRow["Model"].ToString();
-                string serialNum = myRow["Serial_Number"].ToString();
-                string inCost = myRow["purchase_price"].ToString();
+                string mfg = myRow["ciMFG"].ToString();
+                string model = myRow["ciModel"].ToString();
+                string serialNum = myRow["ciSerial"].ToString();
+                string inCost = myRow["cicost"].ToString();
                 string sSQLFmt;
                 if (vOption == "")
                 {
@@ -1844,6 +1891,23 @@ namespace FixContractItems
             WriteContractItemsUpdate(txtContractItemsUpdateWriteSQL.Text.Trim(),"2");
 
             MessageBox.Show("Finished Writing File");
+        }
+
+        private void btnContractItemsUpdateRetrieveMissingSitemId_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            btn.Enabled = false;
+            Cursor = Cursors.WaitCursor;
+
+            DataTable dt = RetrieveMissingItemIDForBadcock();
+
+            lblContractItemsUpdateOutputRecordCount.Text = dt.Rows.Count.ToString();
+
+            dgvContractItemsUpdateOutput.DataSource = dt;
+            dgvContractItemsUpdateOutput.Refresh();
+
+            btn.Enabled = true;
+            Cursor = Cursors.Default;
         }
     }
 }
