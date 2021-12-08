@@ -49,7 +49,8 @@ namespace FixContractItems
         string UpdateItemsOption = "UpdateItems";
         Int32 ItemsNeedUpdate = 0;
         Int32 ItemsNotNeedUpdate = 0;
-        bool isCheckCostOnMatchItems = false;
+        bool isCheckCostOnMatchItems = true;
+        string sStartFindItemIDDate = "2021-01-01";
 
         public frmFixContractItems()
         {
@@ -68,6 +69,7 @@ namespace FixContractItems
             Tier = SIAppRoutines.RetrieveParmString("Tier", "");
             maxToRead = SIAppRoutines.RetrieveParmInteger("maxToRead", 0);
             maxToWrite = SIAppRoutines.RetrieveParmInteger("maxToWrite", 0);
+            sStartFindItemIDDate = SIAppRoutines.RetrieveParmString("findItemIDStartDate", "2021-01-01");
 
             tempDir = GetTempDir();
 
@@ -1576,6 +1578,8 @@ namespace FixContractItems
             return dt;
 
         }
+
+
         private DataTable RetrieveMissingItemIDForBadcock()
         {
             DataTable dt;
@@ -1603,7 +1607,7 @@ namespace FixContractItems
             sbSQL.Append("INNER JOIN dealergroupSELECT ON dealergroupselect.iDealer = dealer.uniquekey ");
             sbSQL.Append("INNER JOIN dealergroup ON dealergroup.uniquekey = dealergroupselect.iDealerGroup ");
             sbSQL.Append("WHERE ");
-            sbSQL.Append("convert(date,batchcontract.entrydate) >= '2021-11-01' ");
+            sbSQL.Append($"convert(date,batchcontract.entrydate) >= '{sStartFindItemIDDate}' ");
             sbSQL.Append("and cancelentrydate is null ");
             sbSQL.Append("and sitemid = '' ");
             sbSQL.Append("and sgroupnumber = 'badcock' ");
@@ -1774,6 +1778,37 @@ namespace FixContractItems
                 string sFileName = FindFileName(txtContractItemsUpdateFileName);
         }
 
+        private string buildUpdateContractItemsUpdateSQL(DataRow myRow, string vOption="")
+        {
+
+            string uk = myRow["ciUK"].ToString();
+            string sItemID = myRow["sItemID"].ToString();
+
+            //sItemID = "";
+
+            string desc = myRow["ciDesc"].ToString();
+            string batchconnum = myRow["batchconnum"].ToString();
+            string mfg = myRow["ciMFG"].ToString();
+            string model = myRow["ciModel"].ToString();
+            string serialNum = myRow["ciSerial"].ToString();
+            string inCost = myRow["cicost"].ToString();
+            string sSQLFmt;
+
+            if (vOption == "")
+            {
+                sSQLFmt = $"update  contractitems set sItemid = '{sItemID}' " +
+                    $" where batchconnum = '{batchconnum}' and description = '{desc}' and mfg = '{mfg}' and model = '{model}' and serialnum = '{serialNum}' and cost = '{inCost}';";
+            }
+            else
+            {
+                sSQLFmt = $"update top(1) contractitems set sItemid = '{sItemID}' " +
+                    $" where batchconnum = '{batchconnum}' and description = '{desc}' and mfg = '{mfg}' and model = '{model}' and serialnum = '{serialNum}' and cost = '{inCost}';";
+
+            }
+
+            return sSQLFmt;
+
+        }
         private string WriteContractItemsUpdate(string vFileName, string vOption="")
         {
             string sSQL = "";
@@ -1785,16 +1820,16 @@ namespace FixContractItems
 
             foreach (DataRow myRow in dt.Rows)
             {
-                
-                string uk = myRow["ciUK"].ToString();
-                string sItemID = myRow["sItemID"].ToString();
                 string isDetailsMatch = "";
+
                 isDetailsMatch = myRow["detailsMatch"].ToString();
+
                 if (isDetailsMatch == "N")
                 {
                     numNotFound += 1;
                     continue;
                 }
+
                 string itemNeedUpdate = myRow["ItemNeedsUpdate"].ToString();
                 numFound += 1;
 
@@ -1803,25 +1838,9 @@ namespace FixContractItems
                     continue;
                 }
 
-                string desc = myRow["ciDesc"].ToString();
-                string batchconnum = myRow["batchconnum"].ToString();
-                string mfg = myRow["ciMFG"].ToString();
-                string model = myRow["ciModel"].ToString();
-                string serialNum = myRow["ciSerial"].ToString();
-                string inCost = myRow["cicost"].ToString();
-                string sSQLFmt;
-                if (vOption == "")
-                {
-                    sSQLFmt = $"update  contractitems set sItemid = '{sItemID}' " +
-                        $" where batchconnum = '{batchconnum}' and description = '{desc}' and mfg = '{mfg}' and model = '{model}' and serialnum = '{serialNum}' and cost = '{inCost}';";
-                }
-                else
-                {
-                    sSQLFmt = $"update top(1) contractitems set sItemid = '{sItemID}' " +
-                        $" where batchconnum = '{batchconnum}' and description = '{desc}' and mfg = '{mfg}' and model = '{model}' and serialnum = '{serialNum}' and cost = '{inCost}';";
+                string sql = buildUpdateContractItemsUpdateSQL(myRow, vOption);
 
-                }
-                outputFile.WriteLine(sSQLFmt);
+                outputFile.WriteLine(sql);
 
             }
 
@@ -1831,6 +1850,92 @@ namespace FixContractItems
             return sSQL;
         }
 
+
+        private void UpdateContractItemIDsToDB(string vOption = "")
+        {
+            string sSQL = "";
+            string sSQLPrevious = "";
+
+            string[] columns = new[]
+             {
+                        "DBUpdated"
+             };
+
+            DataTable dt = (DataTable)dgvContractItemsUpdateOutput.DataSource;
+
+            ColumnUtilities.addColumnsToTable(dt, columns);
+
+            ColumnUtilities.reorderColumns(dt, columns);
+            
+            columns = new[]
+             {
+                        "SQL"
+             };
+
+            ColumnUtilities.addColumnsToTable(dt, columns);
+
+            foreach (DataRow myRow in dt.Rows)
+            {
+                string isDetailsMatch = "";
+
+                isDetailsMatch = myRow["detailsMatch"].ToString();
+
+                if (isDetailsMatch == "N")
+                {
+                    continue;
+                }
+
+                string itemNeedUpdate = myRow["ItemNeedsUpdate"].ToString();
+
+                bool isTest = false;
+
+                if (isTest)
+                {
+                    itemNeedUpdate = "Y";
+                    myRow["sItemID"] = ";";
+
+                }
+
+                 if (itemNeedUpdate != "Y")
+                {
+                    continue;
+                }
+
+                sSQL = buildUpdateContractItemsUpdateSQL(myRow, vOption);
+
+                bool isCheckForDuplicate = false;
+
+                if (sSQL == sSQLPrevious && isCheckForDuplicate)
+                {
+                    myRow["DBUpdated"] = "Same";
+                }
+                else
+                {
+                    Int32 result = UpdateContractItemIDToDB(sSQL);
+
+                    myRow["DBUpdated"] = result.ToString();
+                }
+
+                myRow["sql"] = sSQL;
+                sSQLPrevious = sSQL;
+            }
+
+        }
+
+        private Int32 UpdateContractItemIDToDB(string vSQL)
+        {
+            _SqlDataRoutines.SQLString = vSQL;
+            Int32 result = 0;
+
+            object obj = _SqlDataRoutines.ExecuteNonQuery();
+            if (obj != null)
+            {
+                result = Convert.ToInt32(obj);
+            }
+
+            return result;
+
+        }
         private void btnContractItemsUpdateErrorWrite_Click(object sender, EventArgs e)
         {
             WriteContractItemsUpdateErrors(txtContractItemsUpdateWriteSQL.Text);
@@ -1904,6 +2009,20 @@ namespace FixContractItems
             lblContractItemsUpdateOutputRecordCount.Text = dt.Rows.Count.ToString();
 
             dgvContractItemsUpdateOutput.DataSource = dt;
+            dgvContractItemsUpdateOutput.Refresh();
+
+            btn.Enabled = true;
+            Cursor = Cursors.Default;
+        }
+
+        private void btnContractItemsUpdateWriteToDB_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            btn.Enabled = false;
+            Cursor = Cursors.WaitCursor;
+
+            UpdateContractItemIDsToDB("");
+
             dgvContractItemsUpdateOutput.Refresh();
 
             btn.Enabled = true;
