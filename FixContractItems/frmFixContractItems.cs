@@ -15,14 +15,13 @@ namespace FixContractItems
 {
     public partial class frmFixContractItems : Form
     {
-        private ProcessExcel _processExcel;
         log4net.ILog log;
         string sConnectionString;
         Int32 maxToRead = 0;
         Int32 maxToWrite = 0;
         string Tier = "";
         string tempDir;
-        string Version = "1.0";
+        string Version = "1.0a";
         DataTable dtMismatches;
         DataTable dtClaimCarrierMismatches;
         LineItems _lineItem;
