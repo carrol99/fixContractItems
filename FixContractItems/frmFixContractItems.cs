@@ -1872,6 +1872,7 @@ namespace FixContractItems
              };
 
             ColumnUtilities.addColumnsToTable(dt, columns);
+            Int32 numUpdated = 0;
 
             foreach (DataRow myRow in dt.Rows)
             {
@@ -1913,6 +1914,10 @@ namespace FixContractItems
                     Int32 result = UpdateContractItemIDToDB(sSQL);
 
                     myRow["DBUpdated"] = result.ToString();
+                    numUpdated += 1;
+                    lblContractItemsUpdateStatus.Text = "Updated:" + numUpdated.ToString();
+                    Application.DoEvents();
+
                 }
 
                 myRow["sql"] = sSQL;
