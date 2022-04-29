@@ -21,7 +21,7 @@ namespace FixContractItems
         Int32 maxToWrite = 0;
         string Tier = "";
         string tempDir;
-        string Version = "1.0a";
+        string Version = "1.0b";
         DataTable dtMismatches;
         DataTable dtClaimCarrierMismatches;
         LineItems _lineItem;
@@ -49,7 +49,7 @@ namespace FixContractItems
         Int32 ItemsNeedUpdate = 0;
         Int32 ItemsNotNeedUpdate = 0;
         bool isCheckCostOnMatchItems = true;
-        string sStartFindItemIDDate = "2021-01-01";
+        string sStartFindItemIDDate = "2022-01-02";
 
         public frmFixContractItems()
         {
@@ -68,7 +68,7 @@ namespace FixContractItems
             Tier = SIAppRoutines.RetrieveParmString("Tier", "");
             maxToRead = SIAppRoutines.RetrieveParmInteger("maxToRead", 0);
             maxToWrite = SIAppRoutines.RetrieveParmInteger("maxToWrite", 0);
-            sStartFindItemIDDate = SIAppRoutines.RetrieveParmString("findItemIDStartDate", "2021-01-01");
+            sStartFindItemIDDate = SIAppRoutines.RetrieveParmString("findItemIDStartDate", "2022-01-01");
 
             tempDir = GetTempDir();
 
@@ -1140,8 +1140,6 @@ namespace FixContractItems
                 newRow["Purchase_Price"] = vRow["Purchase_Price"].ToString();
                 newRow["Description"] = vRow["Description"].ToString();
                 newRow["sItemID"] = vRow["ItemProductID"].ToString();
-                newRow["entrydate"] = dr1["entrydate"].ToString();
-                newRow["cancelentrydate"] = dr1["cancelentrydate"].ToString();
 
                 newRow["FirstName"] = dr1["FirstName"];
                 newRow["LastName"] = dr1["LastName"];                                                                                                                            
@@ -1252,7 +1250,7 @@ namespace FixContractItems
 
             if (isFatalError)
             {
-                MessageBox.Show("Fatal Error Encounterd:" + FatalErrorMessage);
+                //MessageBox.Show("Fatal Error Encounterd:" + FatalErrorMessage);
             }
 
             btn.Enabled = true;
@@ -1272,9 +1270,10 @@ namespace FixContractItems
             Cursor = Cursors.WaitCursor;
 
             RetrieveDataForAddItems(dtOutput, "Missing");
+
             if (isFatalError)
             {
-                MessageBox.Show("Fatal Error Encounterd:" + FatalErrorMessage);
+                MessageBox.Show("Fatal Error Encountered:" + FatalErrorMessage);
             }
 
             btn.Enabled = true;
@@ -1341,7 +1340,6 @@ namespace FixContractItems
 
         }
 
-
         private void WriteContractItems(string vFileName)
         {
             StreamWriter outputFile = new StreamWriter(vFileName);
@@ -1370,7 +1368,6 @@ namespace FixContractItems
 
                 string sql = BuildContractItemInsertSQL(myCI);
 
-                //outputFile.WriteLine("output:" + myCI.SeqNum.ToString() + ":" + myCI.BatchConNum + " desc:" + myCI.Description + " " + myCI.Cost.ToString());
                 outputFile.WriteLine(sql);
             }
 
@@ -1578,7 +1575,6 @@ namespace FixContractItems
 
         }
 
-
         private DataTable RetrieveMissingItemIDForBadcock()
         {
             DataTable dt;
@@ -1654,7 +1650,6 @@ namespace FixContractItems
         private void btnClaimCarrierMismatchExpand_Click(object sender, EventArgs e)
         {
             ExpandDataGridView((Button)sender, dgvClaimCarrierMismatch);
-
         }
 
         private void btnClaimCarrierFixWriteSQL_Click(object sender, EventArgs e)
@@ -1733,7 +1728,6 @@ namespace FixContractItems
             stopWatch.Stop();
             TimeSpan elapsed = stopWatch.Elapsed;
 
-            //ValidateItems(dtContractItemsUpdateOutput);
             lblContractItemsUpdateStatus.Text = "Elapsed:" + elapsed.ToString();
 
             if (isFatalError)
@@ -1754,7 +1748,16 @@ namespace FixContractItems
 
         private void btnContractItemsUpdateOutputWrite_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+            Button btn = (Button)sender;
+            btn.Enabled = false;
 
+            bool isWriteHeaders = true;
+
+            WriteExcelFile(txtContractItemsUpdateOutputFileName, txtContractItemsUpdateSheetName, (DataTable)dgvContractItemsUpdateOutput.DataSource, isWriteHeaders);
+
+            Cursor = Cursors.Default;
+            btn.Enabled = true;
         }
 
         private void btnContractItemsUpdateOutputExpand_Click(object sender, EventArgs e)
@@ -1764,11 +1767,21 @@ namespace FixContractItems
 
         private void btnContractItemsUpdateInputWrite_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+            Button btn = (Button)sender;
+            btn.Enabled = false;
 
+            bool isWriteHeaders = true;
+
+            WriteExcelFile(txtContractItemsUpdateInputFileName, txtContractItemsUpdateSheetName, (DataTable)dgvContractItemsUpdateInput.DataSource, isWriteHeaders);
+
+            Cursor = Cursors.Default;
+            btn.Enabled = true;
         }
 
         private void btnContractItemsUpdateInputExpand_Click(object sender, EventArgs e)
         {
+            ExpandDataGridView((Button)sender, dgvContractItemsUpdateInput);
 
         }
 
@@ -2031,6 +2044,51 @@ namespace FixContractItems
 
             btn.Enabled = true;
             Cursor = Cursors.Default;
+        }
+
+        private void btnProcessOutputWriteFile_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            Button btn = (Button)sender;
+            btn.Enabled = false;
+
+            bool isWriteHeaders = true;
+
+            WriteExcelFile(txtProcessOutputFileName, txtMissingSheetName, (DataTable)dgvProcessOutput.DataSource, isWriteHeaders);
+
+            Cursor = Cursors.Default;
+            btn.Enabled = true;
+        }
+
+        private void btnProcessOutputExpand_Click(object sender, EventArgs e)
+        {
+            ExpandDataGridView((Button)sender, dgvProcessOutput);
+
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnProcessInputExpand_Click(object sender, EventArgs e)
+        {
+            ExpandDataGridView((Button)sender, dgvProcessInput);
+
+        }
+
+        private void btnProcessInputWriteExcelFile_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            Button btn = (Button)sender;
+            btn.Enabled = false;
+
+            bool isWriteHeaders = true;
+
+            WriteExcelFile(txtProcessInputOutputFileName, txtMissingSheetName, (DataTable)dgvProcessInput.DataSource, isWriteHeaders);
+
+            Cursor = Cursors.Default;
+            btn.Enabled = true;
         }
     }
 }
