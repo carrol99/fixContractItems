@@ -1581,10 +1581,14 @@ namespace FixContractItems
 
             StringBuilder sbSQL = new StringBuilder();
             sbSQL.Append("SELECT ");
-            sbSQL.Append("count(*), ");
+            sbSQL.Append("count(*) as count, ");
             sbSQL.Append("min(dealergroup.sgroupnumber) as minDGNumber, ");
             sbSQL.Append("min(contractitems.uniquekey) as minciUK, ");
             sbSQL.Append("max(contractitems.uniquekey) as maxCIUK, ");
+            sbSQL.Append("min(contractitems.batchconnum) as minBatchConNum, ");
+            sbSQL.Append("max(contractitems.batchconnum) as maxBatchConNum, ");
+            sbSQL.Append("min(batchcontract.certificate) as minCertificate, ");
+            sbSQL.Append("max(batchcontract.certificate) as maxCertificate, ");
             sbSQL.Append("convert(date,entrydate) as entrydate, ");
             sbSQL.Append("datepart(hour,entrydate) as entryhour, ");
             sbSQL.Append("min(entrydate) as minEntrydate, ");
