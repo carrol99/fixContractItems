@@ -21,7 +21,7 @@ namespace FixContractItems
         Int32 maxToWrite = 0;
         string Tier = "";
         string tempDir;
-        string Version = "1.0b";
+        string Version = "1.0c";
         DataTable dtMismatches;
         DataTable dtClaimCarrierMismatches;
         LineItems _lineItem;
@@ -1503,6 +1503,8 @@ namespace FixContractItems
             sbSQL.Append("max(batchcontract.uniquekey) as maxBCUK, ");
             sbSQL.Append("min(batchcontract.Certificate) as minCertNo, ");
             sbSQL.Append("max(batchcontract.Certificate) as maxCertNo, ");
+            sbSQL.Append("min(batchcontract.InvoiceNo) as minInvNo, ");
+            sbSQL.Append("max(batchcontract.InvoiceNo) as maxInvNo, ");
             sbSQL.Append("min(batchcontract.ExpirationDate) as minExpiration, ");
             sbSQL.Append("max(batchcontract.ExpirationDate) AS maxExpiration, ");
             sbSQL.Append("min(dealer.dealernumber) as minDealerNumber, ");
@@ -1696,6 +1698,44 @@ namespace FixContractItems
 
             outputFile.WriteLine("--Num Found:" + numFound.ToString() + " not found:" + numNotFound.ToString());
             outputFile.Close();
+
+        }
+
+        private Int32 UpdateDBForClaimCarrierFix()
+        {
+ 
+            string[] columns = new[]
+             {
+                        "DBUpdated","SQL"
+             };
+
+            ColumnUtilities.addColumnsToTable(dtClaimCarrierMismatches, columns);
+            ColumnUtilities.reorderColumns(dtClaimCarrierMismatches, columns);
+            dgvClaimCarrierMismatch.DataSource = null;
+            dgvClaimCarrierMismatch.DataSource = dtClaimCarrierMismatches;
+            dgvClaimCarrierMismatch.Refresh();
+
+            Int32 numFound = 0;
+            Int32 result = 0;
+
+
+            foreach (DataRow myRow in dtClaimCarrierMismatches.Rows)
+            {
+                string uk = myRow["iWarranty"].ToString();
+                string bcCarrier = myRow["bccarrier"].ToString();
+                string claimcarrier = myRow["claimcarrier"].ToString();
+                string claimNumber = myRow["claimnumber"].ToString();
+
+                string sSQLFmt = $"update claimmaster set insurancekey = '{bcCarrier}' where uniquekey = {claimNumber} and insurancekey='{claimcarrier}';";
+                result = UpdateToDB(sSQLFmt);
+                myRow["DBUpdated"] = result.ToString();
+                myRow["SQL"] = sSQLFmt;
+                Application.DoEvents();
+
+                numFound += result;
+            }
+
+            return numFound;
 
         }
 
@@ -1928,7 +1968,7 @@ namespace FixContractItems
                 }
                 else
                 {
-                    Int32 result = UpdateContractItemIDToDB(sSQL);
+                    Int32 result = UpdateToDB(sSQL);
 
                     myRow["DBUpdated"] = result.ToString();
                     numUpdated += 1;
@@ -1943,7 +1983,7 @@ namespace FixContractItems
 
         }
 
-        private Int32 UpdateContractItemIDToDB(string vSQL)
+        private Int32 UpdateToDB(string vSQL)
         {
             _SqlDataRoutines.SQLString = vSQL;
             Int32 result = 0;
@@ -2093,6 +2133,20 @@ namespace FixContractItems
 
             Cursor = Cursors.Default;
             btn.Enabled = true;
+        }
+
+        private void btnUpdateDBClaimCarrierFix_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            Button btn = (Button)sender;
+            btn.Enabled = false;
+
+            Int32 count =UpdateDBForClaimCarrierFix();
+            MessageBox.Show("Items Updated:" + count.ToString());
+
+            Cursor = Cursors.Default;
+            btn.Enabled = true;
+ 
         }
     }
 }

@@ -147,6 +147,7 @@
             this.dgvMismatched = new System.Windows.Forms.DataGridView();
             this.tabClaimCarrierFix = new System.Windows.Forms.TabPage();
             this.splitClaimCarrierFix = new System.Windows.Forms.SplitContainer();
+            this.btnUpdateDBClaimCarrierFix = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.txtClaimCarrierFixOutputFileName = new System.Windows.Forms.TextBox();
             this.btnClaimCarrierFixWriteSQL = new System.Windows.Forms.Button();
@@ -1533,6 +1534,7 @@
             // 
             // splitClaimCarrierFix.Panel1
             // 
+            this.splitClaimCarrierFix.Panel1.Controls.Add(this.btnUpdateDBClaimCarrierFix);
             this.splitClaimCarrierFix.Panel1.Controls.Add(this.label11);
             this.splitClaimCarrierFix.Panel1.Controls.Add(this.txtClaimCarrierFixOutputFileName);
             this.splitClaimCarrierFix.Panel1.Controls.Add(this.btnClaimCarrierFixWriteSQL);
@@ -1551,6 +1553,16 @@
             this.splitClaimCarrierFix.Size = new System.Drawing.Size(1258, 687);
             this.splitClaimCarrierFix.SplitterDistance = 160;
             this.splitClaimCarrierFix.TabIndex = 0;
+            // 
+            // btnUpdateDBClaimCarrierFix
+            // 
+            this.btnUpdateDBClaimCarrierFix.Location = new System.Drawing.Point(211, 28);
+            this.btnUpdateDBClaimCarrierFix.Name = "btnUpdateDBClaimCarrierFix";
+            this.btnUpdateDBClaimCarrierFix.Size = new System.Drawing.Size(147, 38);
+            this.btnUpdateDBClaimCarrierFix.TabIndex = 79;
+            this.btnUpdateDBClaimCarrierFix.Text = "Update DB";
+            this.btnUpdateDBClaimCarrierFix.UseVisualStyleBackColor = true;
+            this.btnUpdateDBClaimCarrierFix.Click += new System.EventHandler(this.btnUpdateDBClaimCarrierFix_Click);
             // 
             // label11
             // 
@@ -1574,7 +1586,7 @@
             // 
             // btnClaimCarrierFixWriteSQL
             // 
-            this.btnClaimCarrierFixWriteSQL.Location = new System.Drawing.Point(297, 28);
+            this.btnClaimCarrierFixWriteSQL.Location = new System.Drawing.Point(441, 28);
             this.btnClaimCarrierFixWriteSQL.Name = "btnClaimCarrierFixWriteSQL";
             this.btnClaimCarrierFixWriteSQL.Size = new System.Drawing.Size(147, 38);
             this.btnClaimCarrierFixWriteSQL.TabIndex = 76;
@@ -1882,6 +1894,7 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btnContractItemsUpdateRetrieveMissingSitemId;
         private System.Windows.Forms.Button btnContractItemsUpdateWriteToDB;
+        private System.Windows.Forms.Button btnUpdateDBClaimCarrierFix;
     }
 }
 
