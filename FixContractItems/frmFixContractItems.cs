@@ -21,7 +21,7 @@ namespace FixContractItems
         Int32 maxToWrite = 0;
         string Tier = "";
         string tempDir;
-        string Version = "1.0c";
+        string Version = "1.1";
         DataTable dtMismatches;
         DataTable dtClaimCarrierMismatches;
         LineItems _lineItem;
@@ -751,7 +751,11 @@ namespace FixContractItems
                 {
                     continue;
                 }
-
+                // if newCIBatchConNum not defined there is nothing to update, so bypass
+                if (newCIBatchConNum == "")
+                {
+                    continue;
+                }
                 numFound += 1;
 
                 string sSQLFmt = "update  contractitems set batchconnum = '" + newCIBatchConNum +

@@ -235,8 +235,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabMain.Controls.Add(this.tabContractItemsUpdate);
-            this.tabMain.Controls.Add(this.tabMissingItems);
             this.tabMain.Controls.Add(this.tabMismatched);
+            this.tabMain.Controls.Add(this.tabMissingItems);
             this.tabMain.Controls.Add(this.tabClaimCarrierFix);
             this.tabMain.Location = new System.Drawing.Point(0, 27);
             this.tabMain.Name = "tabMain";
