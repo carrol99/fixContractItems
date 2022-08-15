@@ -1102,7 +1102,7 @@ namespace FixContractItems
                 "where batchcontract.invoiceno = '{0}' " +
                 "and dealer.dealernumber = '" + sDealer + "' " +
                 //"and batchcontract.cancelentrydate is null " +
-                "order by batchcontract.uniquekey desc";
+                "order by batchcontract.uniquekey --desc";
 
             string sql = string.Format(sqlFMT, vInvoiceNo);
 
